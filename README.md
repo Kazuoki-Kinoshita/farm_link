@@ -39,6 +39,6 @@ https://docs.google.com/spreadsheets/d/148I2Z3vRf-EKBWjTOgoPCv3j0jTmryozKNh3qZ6j
 https://cacoo.com/diagrams/BuuQyis91N3eU0lV/47463
 
 ## ER図
-![er](https://user-images.githubusercontent.com/122067636/229765793-406704b3-bb9e-4c92-86cb-04f52223cb03.png)
+![er](https://user-images.githubusercontent.com/122067636/229800989-e5dcd3d8-2d10-4400-9107-9865627162b8.png)
 ## 画面遷移図
 ![diagram](https://user-images.githubusercontent.com/122067636/229765786-6b9856cc-8f8d-4c18-81a0-3d967850c5fe.png)
