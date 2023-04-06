@@ -11,4 +11,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def configure_account_update_params
     devise_parameter_sanitizer.permit(:account_update, keys: [:name, :role, :email, :password, :password_confirmation])
   end
+
+  def after_sign_up_path_for(resource)
+    if resource.general?
+      new_general_path
+    else
+      root_path
+    end
+  end
 end
