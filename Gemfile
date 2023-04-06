@@ -27,6 +27,7 @@ gem 'devise'
 gem 'devise-i18n'
 gem 'rails_admin', '~> 3.0'
 gem 'cancancan'
+gem 'active_hash'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
