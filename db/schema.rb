@@ -1,6 +1,23 @@
-ActiveRecord::Schema.define(version: 2023_04_06_085314) do
+ActiveRecord::Schema.define(version: 2023_04_07_145211) do
 
   enable_extension "plpgsql"
+
+  create_table "farmers", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "name", null: false
+    t.integer "prefecture_id", null: false
+    t.string "address", null: false
+    t.float "latitude"
+    t.float "longitude"
+    t.string "phone_number", null: false
+    t.string "product"
+    t.string "website"
+    t.string "image"
+    t.text "profile"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_farmers_on_user_id"
+  end
 
   create_table "generals", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -31,5 +48,6 @@ ActiveRecord::Schema.define(version: 2023_04_06_085314) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "farmers", "users"
   add_foreign_key "generals", "users"
 end

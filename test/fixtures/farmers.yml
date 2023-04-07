@@ -1,0 +1,27 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  name: MyString
+  prefecture_id: 1
+  address: MyString
+  latitude: 1.5
+  longitude: 1.5
+  phone_number: MyString
+  product: MyString
+  website: MyString
+  image: MyString
+  profile: MyText
+
+two:
+  user: two
+  name: MyString
+  prefecture_id: 1
+  address: MyString
+  latitude: 1.5
+  longitude: 1.5
+  phone_number: MyString
+  product: MyString
+  website: MyString
+  image: MyString
+  profile: MyText

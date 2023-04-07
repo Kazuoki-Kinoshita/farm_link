@@ -4,8 +4,9 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
-  root 'generals#new'
+  root 'generals#index'
   resources :generals, only: [:new, :create, :show, :edit, :update, :destroy]
+  resources :farmers
   
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
