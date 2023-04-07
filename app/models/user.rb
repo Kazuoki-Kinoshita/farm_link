@@ -4,5 +4,5 @@ class User < ApplicationRecord
   
   enum role: { farmer: 0, general: 1, admin: 2 }
   
-  has_one :general
+  has_one :general, dependent: :destroy
 end

@@ -5,10 +5,7 @@ Rails.application.routes.draw do
   }
 
   root 'generals#new'
-  resources :users, only: [] do
-    resource :general, only: [:new, :create, :show, :edit, :update]
-  end
-  resources :generals
+  resources :generals, only: [:new, :create, :show, :edit, :update, :destroy]
   
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"

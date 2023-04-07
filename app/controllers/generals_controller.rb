@@ -1,6 +1,6 @@
 class GeneralsController < ApplicationController 
   before_action :authenticate_user!
-  before_action :set_general, only: [:show, :edit, :update]
+  before_action :set_general, only: [:show, :edit, :update, :destroy]
   # before_action :check_general_existence, only: [:new, :create] 
 
   def new
@@ -11,7 +11,7 @@ class GeneralsController < ApplicationController
     @general = General.new(general_params)
     @general.user = current_user
     if @general.save
-      redirect_to user_general_path(@general.id), notice: "プロフィールが登録されました。"
+      redirect_to @general, notice: "プロフィールが登録されました。"
     else
       render :new
     end
@@ -25,13 +25,15 @@ class GeneralsController < ApplicationController
 
   def update
     if @general.update(general_params)
-      redirect_to user_general_path(current_user), notice: "プロフィールが登録されました。"
+      redirect_to @general, notice: "プロフィールが登録されました。"
     else
       render :edit
     end
   end
 
   def destroy
+    @general.destroy
+    redirect_to root_path, notice: "プロフィールが削除されました。"
   end
 
 
@@ -41,14 +43,14 @@ class GeneralsController < ApplicationController
     params.require(:general).permit(:prefecture_id, :address)
   end
 
+  def set_general
+    @general = General.find(params[:id])
+  end
+
   # def check_general_existence
   #   if current_user.general.present?
   #     flash[:alart] = "既にプロフィールが登録されています"
   #     redirect_to  new_user_session_path
   #   end
   # end
-
-  def set_general
-    @general = General.find_by(user_id: current_user.id)
-  end
 end
