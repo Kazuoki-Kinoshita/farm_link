@@ -1,0 +1,11 @@
+<h1>プロフィール</h1>
+
+<p>名前:<%= @general.user.name %></p>
+<p>メールアドレス：<%= @general.user.email %></p>
+<p>パスワード：<%= "非表示" %></p>
+<%= link_to '編集', edit_user_registration_path(current_user) %>
+
+<p>検索エリア:<%= @general.prefecture.name %></p>
+<p>住所:<%= %></p>
+
+<%= link_to '編集', edit_user_general_path(current_user) %>

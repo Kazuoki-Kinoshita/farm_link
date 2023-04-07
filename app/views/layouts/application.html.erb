@@ -12,6 +12,11 @@
 
   <body>
     <% if user_signed_in? %>
+      <% if current_user.role == "general" %>
+        <%= link_to "プロフィール", user_general_path(current_user) %>
+      <% elsif current_user.role == "farmer" %>
+        <%= link_to "プロフィール", "########" %>
+      <% end %>
       <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
     <% else %>
       <%= link_to "ログイン", new_user_session_path %>
