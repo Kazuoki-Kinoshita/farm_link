@@ -1,6 +1,6 @@
 class GeneralsController < ApplicationController 
   before_action :authenticate_user!
-  before_action :set_general, only: [:show]
+  before_action :set_general, only: [:show, :edit, :update]
   # before_action :check_general_existence, only: [:new, :create] 
 
   def new
@@ -24,6 +24,11 @@ class GeneralsController < ApplicationController
   end
 
   def update
+    if @general.update(general_params)
+      redirect_to user_general_path(current_user), notice: "プロフィールが登録されました。"
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -43,7 +48,6 @@ class GeneralsController < ApplicationController
   #   end
   # end
 
-  private
   def set_general
     @general = General.find_by(user_id: current_user.id)
   end
