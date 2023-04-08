@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'farmers/index'
+  get 'farmers/show'
+  get 'farmers/new'
+  get 'farmers/edit'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users, controllers: {
     registrations: 'users/registrations'
