@@ -1,5 +1,5 @@
 class FarmersController < ApplicationController
-  # before_action :authenticate_user!
+  load_and_authorize_resource
   before_action :set_farmer, only: [:edit, :update, :overview]
   # before_action :check_general_existence, only: [:new, :create] 
 
