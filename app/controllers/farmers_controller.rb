@@ -1,15 +1,13 @@
 class FarmersController < ApplicationController
   load_and_authorize_resource
-  before_action :set_farmer, only: [:edit, :update, :overview]
-  # before_action :check_general_existence, only: [:new, :create] 
+  before_action :set_farmer, only: [:show, :edit, :update, :overview]
 
   def index
     @farmers = Farmer.all
   end
 
   def show
-    @farmer = Farmer.find_by(id: params[:id])
-    @user = current_user
+    @user = @farmer.user
   end
 
   def new
@@ -45,6 +43,6 @@ class FarmersController < ApplicationController
   end
 
   def set_farmer
-    @farmer = Farmer.find_by(id: params[:id])
+    @farmer = Farmer.find(params[:id])
   end
 end

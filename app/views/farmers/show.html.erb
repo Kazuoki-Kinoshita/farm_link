@@ -1,12 +1,4 @@
-<h2>アカウント情報</h2>
-<p>ユーザー名: <%= @user.name %></p>
-<p>メールアドレス: <%= @user.email %></p>
-<p>パスワード：<%= "非表示" %></p>
-<%= link_to '編集', edit_user_registration_path %>
-<%= link_to '退会する', user_registration_path, method: :delete, data: { confirm: 'アカウントを削除してもよろしいですか？この操作は取り消せません。' } %>
-
-<h2>プロフィール</h2>
-<% if @farmer.present? %>
+<h1>プロフィール</h1>
   <p>農家名:<%= @farmer.name %></p>
   <p>都道府県: <%= @farmer.prefecture.name %></p>
   <p>住所: <%= @farmer.address %></p>
@@ -21,7 +13,3 @@
   <p>農家詳細: <%= @farmer.profile %></p>
   <%= link_to '編集', edit_farmer_path(@farmer) %>
   <%= link_to '戻る', farmers_path %>
-<% else %>
-  <p>未登録です</p>
-  <%= link_to '農家プロフィールを登録する', new_farmer_path %>
-<% end %>

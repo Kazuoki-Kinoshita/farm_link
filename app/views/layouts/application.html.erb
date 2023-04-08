@@ -12,17 +12,20 @@
 
   <body>
     <% if user_signed_in? %>
+      <%= link_to "アカウント情報", user_path(current_user) %>
       <% if current_user.role == "general" %>
         <% if current_user.general.present? %>
           <%= link_to "プロフィール", general_path(current_user.general) %>
         <% else %>
           <%= link_to "プロフィール作成", new_general_path %>
         <% end %>
-
       <% elsif current_user.role == "farmer" %>
-        <%= link_to "プロフィール", "########" %>
+        <% if current_user.farmer.present? %>
+          <%= link_to "プロフィール", farmer_path(current_user.farmer) %>
+        <% else %>
+          <%= link_to "プロフィール作成", new_farmer_path %>
+        <% end %>
       <% end %>
-      
       <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
     <% else %>
       <%= link_to "ログイン", new_user_session_path %>

@@ -3,6 +3,10 @@ class GeneralsController < ApplicationController
   before_action :set_general, only: [:show, :edit, :update, :destroy]
   # before_action :check_general_existence, only: [:new, :create] 
 
+  def show
+    @user = @general.user
+  end
+
   def new
     @general = General.new
   end
@@ -17,10 +21,6 @@ class GeneralsController < ApplicationController
     end
   end
 
-  def show
-    @user = @general.user
-  end
-
   def edit
   end
 
@@ -31,12 +31,7 @@ class GeneralsController < ApplicationController
       render :edit
     end
   end
-
-  def destroy
-    @general.destroy
-    redirect_to root_path, notice: "プロフィールが削除されました。"
-  end
-
+  
 
   private
 
