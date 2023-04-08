@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   }
 
   root 'farmers#index'
-  resources :generals, only: [:new, :create, :show, :edit, :update, :destroy]
+  resources :generals, only: [:new, :create, :show, :edit, :update]
   resources :farmers, only: [:index, :new, :create, :show, :edit, :update]
   
   if Rails.env.development?

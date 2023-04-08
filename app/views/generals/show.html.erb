@@ -11,5 +11,4 @@
 <p>検索エリア:<%= @general.prefecture.name %></p>
 <p>住所:<%= @general.address %></p>
 <%= link_to '編集', edit_general_path(@general) %>
-<%= link_to '削除', @general, method: :delete, data: { confirm: '本当に削除してもよろしいですか？' } %>
 <%= link_to '戻る', root_path %>
