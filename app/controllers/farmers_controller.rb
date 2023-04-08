@@ -1,6 +1,6 @@
 class FarmersController < ApplicationController
   # before_action :authenticate_user!
-  before_action :set_farmer, only: [:show, :edit, :update, :destroy]
+  before_action :set_farmer, only: [:edit, :update, :overview]
   # before_action :check_general_existence, only: [:new, :create] 
 
   def index
@@ -8,7 +8,8 @@ class FarmersController < ApplicationController
   end
 
   def show
-    @user = @farmer.user
+    @farmer = Farmer.find_by(id: params[:id])
+    @user = current_user
   end
 
   def new
@@ -29,11 +30,14 @@ class FarmersController < ApplicationController
   end
 
   def update
+    if @farmer.update(farmer_params)
+      redirect_to @farmer, notice: "プロフィールが更新されました。"
+    else
+      render :edit
+    end
   end
   
-  def destroy
-  end
-
+  
   private
 
   def farmer_params
@@ -41,6 +45,6 @@ class FarmersController < ApplicationController
   end
 
   def set_farmer
-    @farmer = Farmer.find(params[:id])
+    @farmer = Farmer.find_by(id: params[:id])
   end
 end

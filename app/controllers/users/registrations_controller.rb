@@ -16,7 +16,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if resource.general?
       new_general_path
     else
-      root_path
+      new_farmer_path
     end
   end
 end

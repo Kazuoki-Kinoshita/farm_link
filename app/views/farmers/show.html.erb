@@ -1,27 +1,27 @@
-<h1><%= "#{@farmer.name}さん" %></h1>
-
 <h2>アカウント情報</h2>
 <p>ユーザー名: <%= @user.name %></p>
 <p>メールアドレス: <%= @user.email %></p>
 <p>パスワード：<%= "非表示" %></p>
 <%= link_to '編集', edit_user_registration_path %>
-<%= link_to '削除', user_registration_path, method: :delete, data: { confirm: 'アカウントを削除してもよろしいですか？この操作は取り消せません。' } %>
+<%= link_to '退会する', user_registration_path, method: :delete, data: { confirm: 'アカウントを削除してもよろしいですか？この操作は取り消せません。' } %>
 
 <h2>プロフィール</h2>
-<p>農家名:<%= @farmer.name %></p>
-<p>都道府県: <%= @farmer.prefecture.name %></p>
-<p>住所: <%= @farmer.address %></p>
-<p>電話番号: <%= @farmer.phone_number %></p>
-<p>農産物: <%= @farmer.product %></p>
-<p>Webサイト: <%= @farmer.website %></p>
-<% if @farmer.image.present? %>
-  <%= image_tag @farmer.image.url %>
+<% if @farmer.present? %>
+  <p>農家名:<%= @farmer.name %></p>
+  <p>都道府県: <%= @farmer.prefecture.name %></p>
+  <p>住所: <%= @farmer.address %></p>
+  <p>電話番号: <%= @farmer.phone_number %></p>
+  <p>農産物: <%= @farmer.product %></p>
+  <p>Webサイト: <%= @farmer.website %></p>
+  <% if @farmer.image.present? %>
+    <%= image_tag @farmer.image.url %>
+  <% else %>
+    <div style="height: 50px; width: 50px;"></div>
+  <% end %>
+  <p>農家詳細: <%= @farmer.profile %></p>
+  <%= link_to '編集', edit_farmer_path(@farmer) %>
+  <%= link_to '戻る', farmers_path %>
 <% else %>
-  <div style="height: 50px; width: 50px;"></div>
+  <p>未登録です</p>
+  <%= link_to '農家プロフィールを登録する', new_farmer_path %>
 <% end %>
-
-<p>農家詳細: <%= @farmer.profile %></p>
-
-<%= link_to '編集', edit_farmer_path(@farmer) %>
-<%= link_to '削除', @farmer, method: :delete, data: { confirm: '本当に削除してもよろしいですか？' } %>
-<%= link_to '戻る', farmers_path %>

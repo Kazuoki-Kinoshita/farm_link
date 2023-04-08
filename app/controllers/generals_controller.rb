@@ -26,7 +26,7 @@ class GeneralsController < ApplicationController
 
   def update
     if @general.update(general_params)
-      redirect_to @general, notice: "プロフィールが登録されました。"
+      redirect_to @general, notice: "プロフィールが更新されました。"
     else
       render :edit
     end
