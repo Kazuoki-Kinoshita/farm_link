@@ -1,13 +1,15 @@
-<h1>アカウント情報</h1>
-<p>名前:<%= @general.user.name %></p>
-<p>メールアドレス：<%= @general.user.email %></p>
+<h1><%= "#{@user.name}さん" %></h1>
+
+<h2>アカウント情報</h2>
+<p>名前:<%= @user.name %></p>
+<p>メールアドレス：<%= @user.email %></p>
 <p>パスワード：<%= "非表示" %></p>
-<%= link_to '編集', edit_registration_path(current_user) %>
+<%= link_to '編集', edit_user_registration_path %>
 <%= link_to '削除', user_registration_path, method: :delete, data: { confirm: 'アカウントを削除してもよろしいですか？この操作は取り消せません。' } %>
 
-
-<h1>プロフィール</h1>
+<h2>プロフィール</h2>
 <p>検索エリア:<%= @general.prefecture.name %></p>
 <p>住所:<%= @general.address %></p>
 <%= link_to '編集', edit_general_path(@general) %>
-<%= link_to '削除', @general, method: :delete, data: { confirm: '本当にプロフィールを削除してもよろしいですか？' } %>
+<%= link_to '削除', @general, method: :delete, data: { confirm: '本当に削除してもよろしいですか？' } %>
+<%= link_to '戻る', root_path %>

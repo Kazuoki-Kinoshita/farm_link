@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
-  root 'generals#index'
+  root 'farmers#index'
   resources :generals, only: [:new, :create, :show, :edit, :update, :destroy]
   resources :farmers
   

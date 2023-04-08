@@ -1,5 +1,5 @@
 class GeneralsController < ApplicationController 
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
   before_action :set_general, only: [:show, :edit, :update, :destroy]
   # before_action :check_general_existence, only: [:new, :create] 
 
@@ -18,6 +18,7 @@ class GeneralsController < ApplicationController
   end
 
   def show
+    @user = @general.user
   end
 
   def edit
