@@ -1,4 +1,10 @@
 <h1>プロフィール</h1>
+<% if @general.image.attached? %>
+  <%= image_tag @general.image, alt: "General Image" %>
+<% else %>
+  <p>No image uploaded.</p>
+<% end %>
+
 <p>検索エリア:<%= @general.prefecture.name %></p>
 <p>住所:<%= @general.address %></p>
 <%= link_to '編集', edit_general_path(@general) %>
