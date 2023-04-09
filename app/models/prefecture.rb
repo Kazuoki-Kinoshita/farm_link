@@ -18,8 +18,13 @@ class Prefecture < ActiveHash::Base
     {id: 46, name: '鹿児島県'}, {id: 47, name: '沖縄県'}
   ]
 
-include ActiveHash::Associations
-has_many :general
-has_many :farmer
+  include ActiveHash::Associations
+  has_many :general
+  has_many :farmer
 
+  private
+
+  def self.ransackable_attributes(auth_object = nil)
+    %w[name]
+  end
 end

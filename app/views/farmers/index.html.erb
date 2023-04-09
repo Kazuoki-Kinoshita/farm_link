@@ -1,3 +1,5 @@
+<%= render 'search', q: @q, url: root_path %>
+
 <% @farmers.each do |farmer| %>
   <div>
     <% if farmer.image.present? %>

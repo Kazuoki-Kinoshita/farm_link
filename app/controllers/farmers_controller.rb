@@ -3,7 +3,8 @@ class FarmersController < ApplicationController
   before_action :set_farmer, only: [:show, :edit, :update, :overview]
 
   def index
-    @farmers = Farmer.all
+    @q = Farmer.ransack(params[:q])
+    @farmers = @q.result(distinct: true)
   end
 
   def show
