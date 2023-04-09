@@ -1,0 +1,14 @@
+<% @farmers.each do |farmer| %>
+  <div>
+    <% if farmer.image.present? %>
+      <%= image_tag farmer.image.url %>
+    <% else %>
+      <div style="height: 50px; width: 50px;"></div>
+    <% end %>
+    <h3><%= farmer.name %></h3>
+    <p><%= farmer.prefecture.name %></p>
+    <p><%= farmer.product %></p>
+    <%= link_to '詳細', overview_farmer_path(farmer) %>
+  </div>
+  <% end %>
+</div>

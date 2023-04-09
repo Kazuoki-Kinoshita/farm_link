@@ -1,0 +1,17 @@
+<%= form_with(model: general, local: true) do |f| %>
+  <% if general.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+      <% general.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.label :prefecture_id, "検索エリア"  %>
+  <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, prompt: "都道府県を選択してください" %>
+  <%= f.label :address, "住所" %>
+  <%= f.text_field :address %>
+  <%= f.submit %>
+<% end %>

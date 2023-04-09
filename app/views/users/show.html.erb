@@ -1,0 +1,7 @@
+<h1>アカウント情報</h1>
+<p>ユーザー名: <%= @user.name %></p>
+<p>メールアドレス: <%= @user.email %></p>
+<p>パスワード: ********</p>
+<%= link_to 'アカウント情報を編集', edit_user_registration_path %>
+<%= link_to 'アカウント情報を削除', user_registration_path, method: :delete, data: { confirm: 'アカウントを削除してもよろしいですか？この操作は取り消せません。' } %>
+<%= link_to '戻る', root_path %>

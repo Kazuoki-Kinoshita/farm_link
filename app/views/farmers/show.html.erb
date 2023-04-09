@@ -1,0 +1,15 @@
+<h1>プロフィール</h1>
+  <p>農家名:<%= @farmer.name %></p>
+  <p>都道府県: <%= @farmer.prefecture.name %></p>
+  <p>住所: <%= @farmer.address %></p>
+  <p>電話番号: <%= @farmer.phone_number %></p>
+  <p>農産物: <%= @farmer.product %></p>
+  <p>Webサイト: <%= @farmer.website %></p>
+  <% if @farmer.image.present? %>
+    <%= image_tag @farmer.image.url %>
+  <% else %>
+    <div style="height: 50px; width: 50px;"></div>
+  <% end %>
+  <p>農家詳細: <%= @farmer.profile %></p>
+  <%= link_to '編集', edit_farmer_path(@farmer) %>
+  <%= link_to '戻る', farmers_path %>

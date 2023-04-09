@@ -5,26 +5,40 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <% if user_signed_in? %>
+      <%= link_to "アカウント情報", user_path(current_user) %>
+      <% if current_user.role == "general" %>
+        <% if current_user.general&.persisted? %>
+          <%= link_to "プロフィール", general_path(current_user.general) %>
+        <% else %>
+          <%= link_to "プロフィール作成", new_general_path %>
+        <% end %>
+      <% elsif current_user.role == "farmer" %>
+        <% if current_user.farmer&.persisted? %>
+          <%= link_to "プロフィール", farmer_path(current_user.farmer) %>
+        <% else %>
+          <%= link_to "プロフィール作成", new_farmer_path %>
+        <% end %>
+      <% end %>
       <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
     <% else %>
       <%= link_to "ログイン", new_user_session_path %>
       <%= link_to "アカウント登録", new_user_registration_path %>
     <% end %>
 
-     <% if notice %>
+    <% if notice %>
       <p class="alert alert-notice"><%= notice %></p>
     <% end %>
     <% if alert %>
       <p class="alert alert-error"><%= alert %></p>
     <% end %>
-    
+
     <%= yield %>
   </body>
 </html>
