@@ -34,6 +34,11 @@ class FarmersController < ApplicationController
       render :edit
     end
   end
+
+  def overview
+    # @posts = @farmer.posts
+    # @experiences = @farmer.experiences
+  end
   
   
   private

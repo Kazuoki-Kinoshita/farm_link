@@ -7,7 +7,9 @@ Rails.application.routes.draw do
 
   root 'farmers#index'
   resources :generals, only: [:new, :create, :show, :edit, :update]
-  resources :farmers, only: [:index, :new, :create, :show, :edit, :update]
+  resources :farmers, only: [:index, :new, :create, :show, :edit, :update] do
+    get 'overview', on: :member
+  end
   
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
