@@ -10,4 +10,14 @@ class Farmer < ApplicationRecord
   validates :product, presence: true, length: { maximum: 100 }
   validates :website, length: { maximum: 255 }, format: { with: /\Ahttps?:\/\/[\S]+\z/, allow_blank: true }
   validates :profile, length: { maximum: 2000 }
+
+  private
+  
+  def self.ransackable_attributes(auth_object = nil)
+    ["address", "name", "product", "profile", "prefecture_id"]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    ["user"]
+  end
 end
