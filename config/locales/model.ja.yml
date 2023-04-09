@@ -1,0 +1,17 @@
+ja:
+  activerecord:
+    models:
+      farmer: 農家
+      general: 一般
+    attributes:
+      farmer:
+        name: 農家名
+        prefecture_id: 都道府県
+        address: 住所
+        phone_number: 電話番号
+        product: 農産物
+        website: ウェブサイト
+        profile: プロフィール
+      general:
+        prefecture_id: 検索エリア
+        address: 住所

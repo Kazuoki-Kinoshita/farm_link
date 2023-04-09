@@ -6,4 +6,7 @@ class User < ApplicationRecord
   
   has_one :general, dependent: :destroy
   has_one :farmer, dependent: :destroy
+
+  validates :name, presence: true, length: { maximum: 255 }
+  validates :role, presence: true
 end
