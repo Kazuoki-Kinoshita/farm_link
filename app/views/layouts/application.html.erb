@@ -14,13 +14,13 @@
     <% if user_signed_in? %>
       <%= link_to "アカウント情報", user_path(current_user) %>
       <% if current_user.role == "general" %>
-        <% if current_user.general.present? %>
+        <% if current_user.general&.persisted? %>
           <%= link_to "プロフィール", general_path(current_user.general) %>
         <% else %>
           <%= link_to "プロフィール作成", new_general_path %>
         <% end %>
       <% elsif current_user.role == "farmer" %>
-        <% if current_user.farmer.present? %>
+        <% if current_user.farmer&.persisted? %>
           <%= link_to "プロフィール", farmer_path(current_user.farmer) %>
         <% else %>
           <%= link_to "プロフィール作成", new_farmer_path %>

@@ -1,8 +1,8 @@
-<%= form_with(model: @farmer, local: true) do |f| %>
-  <% if @farmer.errors.any? %>
+<%= form_with(model: farmer, local: true) do |f| %>
+  <% if farmer.errors.any? %>
     <div id="error_explanation">
       <ul>
-      <% @farmer.errors.full_messages.each do |msg| %>
+      <% farmer.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
