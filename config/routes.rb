@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :farmers, only: [:index, :new, :create, :show, :edit, :update] do
     get 'overview', on: :member
   end
+  resources :posts
   
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
