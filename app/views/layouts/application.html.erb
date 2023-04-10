@@ -22,6 +22,7 @@
       <% elsif current_user.role == "farmer" %>
         <% if current_user.farmer&.persisted? %>
           <%= link_to "プロフィール", farmer_path(current_user.farmer) %>
+          <%= link_to "投稿一覧", posts_path %>
         <% else %>
           <%= link_to "プロフィール作成", new_farmer_path %>
         <% end %>

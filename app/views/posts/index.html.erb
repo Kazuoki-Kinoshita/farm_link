@@ -1,0 +1,15 @@
+<h1>投稿一覧</h1>
+
+<%= link_to '投稿する', new_post_path %>
+<% @posts.each do |post| %>
+  <div>
+    <h2><%= link_to post.title, post_path(post) %></h2>
+    <p><%= post.content %></p>
+    <% post.images.each do |image| %>
+      <%= image_tag(image, alt: "Post Image", style: "max-width: 100%;") %>
+    <% end %>
+    <%= link_to '詳細', post_path(post) %>
+    <%= link_to '編集', edit_post_path(post) %>
+    <%= link_to '削除', post_path(post), method: :delete, data: { confirm: '本当に削除しますか？' } %>
+  </div>
+<% end %>
