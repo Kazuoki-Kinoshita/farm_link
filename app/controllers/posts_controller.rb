@@ -26,9 +26,16 @@ class PostsController < ApplicationController
   end
 
   def update
+    if @post.update(post_params)
+      redirect_to @post, notice: "投稿が更新されました。"
+    else
+      render :edit
+    end
   end
 
   def destroy
+    @post.destroy
+    redirect_to posts_url, notice: "投稿が削除されました。"
   end
 
   
