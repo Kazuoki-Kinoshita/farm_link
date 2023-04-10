@@ -3,6 +3,7 @@ ja:
     models:
       farmer: 農家
       general: 一般
+      post: 投稿
     attributes:
       farmer:
         name: 農家名
@@ -15,3 +16,7 @@ ja:
       general:
         prefecture_id: 検索エリア
         address: 住所
+      post:
+        title: タイトル
+        content: 内容
+        images: 画像

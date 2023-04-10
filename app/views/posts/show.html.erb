@@ -1,0 +1,15 @@
+<h1><%= @post.title %></h1>
+
+<p>
+  <%= @post.content %>
+</p>
+
+<% if @post.images.attached? %>
+  <div>
+    <% @post.images.each do |image| %>
+      <%= image_tag(image, alt: "Post Image", style: "max-width: 100%;") %>
+    <% end %>
+  </div>
+<% end %>
+
+<%= link_to "戻る", posts_path %>
