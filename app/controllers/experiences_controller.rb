@@ -2,6 +2,10 @@ class ExperiencesController < ApplicationController
   before_action :set_experience, only: [:show, :edit, :update, :destroy]
   before_action :redirect_unless_farmer, only: [:index, :new, :create, :edit, :update, :destroy]
 
+  def index
+    @experiences = current_user.farmer.experiences
+  end
+
   def new
     @experience = Experience.new
   end
