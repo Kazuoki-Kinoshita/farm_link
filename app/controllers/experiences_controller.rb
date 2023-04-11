@@ -6,6 +6,9 @@ class ExperiencesController < ApplicationController
     @experiences = current_user.farmer.experiences
   end
 
+  def show
+  end
+
   def new
     @experience = Experience.new
   end
@@ -19,10 +22,23 @@ class ExperiencesController < ApplicationController
     end
   end
 
-  def show
+  def edit
   end
 
+  def update
+    if @experience.update(experience_params)
+      redirect_to @experience, notice: "体験情報が更新されました。"
+    else
+      render :edit
+    end
+  end
 
+  def destroy
+    @experience.destroy
+    redirect_to experiences_url, notice: "体験情報が削除されました。"
+  end
+
+  
   private
 
   def experience_params
