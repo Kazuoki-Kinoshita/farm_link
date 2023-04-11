@@ -1,0 +1,16 @@
+<h1>詳細</h1>
+
+<h1><%= @experience.title %></h1>
+<p>
+  <%= @experience.content %>
+</p>
+
+<% if @experience.images.attached? %>
+  <div>
+    <% @experience.images.each do |image| %>
+      <%= image_tag(image, alt: "Experience Image", style: "max-width: 100%;") %>
+    <% end %>
+  </div>
+<% end %>
+
+<%= link_to "戻る", experiences_path %>

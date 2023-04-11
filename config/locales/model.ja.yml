@@ -4,6 +4,7 @@ ja:
       farmer: 農家
       general: 一般
       post: 投稿
+      experience: 体験情報
     attributes:
       farmer:
         name: 農家名
@@ -19,4 +20,8 @@ ja:
       post:
         title: タイトル
         content: 内容
+        images: 画像
+      experience:
+        title: タイトル
+        content: 体験情報    
         images: 画像
