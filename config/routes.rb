@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     get 'overview', on: :member
   end
   resources :posts
+  resources :experiences
   
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"

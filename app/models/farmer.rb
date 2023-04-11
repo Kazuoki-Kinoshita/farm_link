@@ -4,6 +4,7 @@ class Farmer < ApplicationRecord
   belongs_to :user
   has_one_attached :image
   has_many :posts, dependent: :destroy
+  has_many :experiences, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 100 }
   validates :prefecture_id, presence: true

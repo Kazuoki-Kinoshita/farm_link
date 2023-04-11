@@ -1,4 +1,4 @@
-ActiveRecord::Schema.define(version: 2023_04_11_081547) do
+ActiveRecord::Schema.define(version: 2023_04_11_124433) do
 
   enable_extension "plpgsql"
 
@@ -28,6 +28,17 @@ ActiveRecord::Schema.define(version: 2023_04_11_081547) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "experiences", force: :cascade do |t|
+    t.bigint "farmer_id", null: false
+    t.string "title", null: false
+    t.text "content", null: false
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["farmer_id"], name: "index_experiences_on_farmer_id"
   end
 
   create_table "farmers", force: :cascade do |t|
@@ -95,6 +106,7 @@ ActiveRecord::Schema.define(version: 2023_04_11_081547) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "experiences", "farmers"
   add_foreign_key "farmers", "users"
   add_foreign_key "generals", "users"
   add_foreign_key "posts", "farmers"
