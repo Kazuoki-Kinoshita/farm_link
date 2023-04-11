@@ -14,10 +14,10 @@ class Ability
 
       if user.general?
         can [:show, :new, :create, :edit, :update], General, user_id: user.id
-        can :read, General, user_id: user.id
       end
     end
     can :index, Farmer
     can :overview, Farmer
+    can :read, General
   end
 end

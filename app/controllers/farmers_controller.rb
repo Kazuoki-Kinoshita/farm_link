@@ -37,6 +37,7 @@ class FarmersController < ApplicationController
   end
 
   def overview
+    @user = @farmer.user
     # @posts = @farmer.posts
     # @experiences = @farmer.experiences
   end
