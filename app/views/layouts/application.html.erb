@@ -24,6 +24,7 @@
           <%= link_to "プロフィール", farmer_path(current_user.farmer) %>
           <%= link_to "投稿一覧", posts_path %>
           <%= link_to "体験情報一覧", experiences_path %>
+          <%= link_to "メッセージ一覧", conversations_path %>
         <% else %>
           <%= link_to "プロフィール作成", new_farmer_path %>
         <% end %>
