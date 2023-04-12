@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   end
   resources :posts
   resources :experiences
+  resources :conversations do
+    resources :messages
+  end
   
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
