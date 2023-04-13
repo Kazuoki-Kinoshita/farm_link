@@ -5,6 +5,8 @@ class Farmer < ApplicationRecord
   has_one_attached :image
   has_many :posts, dependent: :destroy
   has_many :experiences, dependent: :destroy
+  has_many :plots, dependent: :destroy
+  accepts_nested_attributes_for :plots, allow_destroy: true, reject_if: :all_blank
 
   validates :name, presence: true, length: { maximum: 100 }
   validates :prefecture_id, presence: true
