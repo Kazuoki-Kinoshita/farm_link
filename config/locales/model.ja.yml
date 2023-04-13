@@ -5,6 +5,7 @@ ja:
       general: 一般
       post: 投稿
       experience: 体験情報
+      plot: 区間
     attributes:
       farmer:
         name: 農家名
@@ -14,6 +15,8 @@ ja:
         product: 農産物
         website: ウェブサイト
         profile: プロフィール
+      plot:
+        name: 区間名
       general:
         prefecture_id: 検索エリア
         address: 住所
@@ -25,3 +28,6 @@ ja:
         title: タイトル
         content: 体験情報    
         images: 画像
+  errors:
+    messages:
+      empty: "最低1つの区画名を入力してください。"

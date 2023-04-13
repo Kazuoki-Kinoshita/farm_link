@@ -15,6 +15,7 @@ class Farmer < ApplicationRecord
   validates :product, presence: true, length: { maximum: 100 }
   validates :website, length: { maximum: 255 }, format: { with: /\Ahttps?:\/\/[\S]+\z/, allow_blank: true }
   validates :profile, length: { maximum: 2000 }
+  validate :validate_plot_presence
 
   private
   
@@ -24,5 +25,12 @@ class Farmer < ApplicationRecord
 
   def self.ransackable_associations(auth_object = nil)
     ["user"]
+  end
+
+  def validate_plot_presence
+    valid_plots = plots.reject(&:marked_for_destruction?)
+    if valid_plots.empty?
+      errors.add(:base, :empty)
+    end
   end
 end

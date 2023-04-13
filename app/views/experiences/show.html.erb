@@ -1,5 +1,10 @@
 <h1>詳細</h1>
 
+<p>区画名:</p>
+<% @plots.each do |plot| %>
+  <%= plot.name %>
+<% end %>
+
 <h1><%= @experience.title %></h1>
 <p>
   <%= @experience.content %>

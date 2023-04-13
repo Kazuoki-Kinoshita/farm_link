@@ -10,6 +10,11 @@
   <% end %>
 
   <div>
+    <%= f.label :plot_ids, "区画名" %><br>
+    <%= f.collection_check_boxes :plot_ids, @plots, :id, :name %>
+  </div>
+
+  <div>
     <%= f.label :title %>
     <%= f.text_field :title %>
   </div>
