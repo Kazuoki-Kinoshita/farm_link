@@ -29,6 +29,13 @@
     <%= f.text_field :phone_number %>
   </div>
 
+  <div class="nested-fields">
+    <%= f.fields_for :plots do |plot_f| %>
+      <%= render 'plot_fields', f: plot_f %>
+    <% end %>
+    <%= link_to_add_association '区画名追加', f, :plots, class: "links" %>
+  </div>
+
   <div>
     <%= f.label :product, "農産物" %>
     <%= f.text_field :product %>

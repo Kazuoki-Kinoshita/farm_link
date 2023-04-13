@@ -13,6 +13,7 @@ class FarmersController < ApplicationController
 
   def new
     @farmer = Farmer.new
+    @farmer.plots.build
   end
 
   def create
@@ -42,11 +43,10 @@ class FarmersController < ApplicationController
     # @experiences = @farmer.experiences
   end
   
-  
   private
 
   def farmer_params
-    params.require(:farmer).permit(:name, :prefecture_id, :address, :latitude, :longitude, :phone_number, :product, :website, :image, :profile)
+    params.require(:farmer).permit(:name, :prefecture_id, :address, :latitude, :longitude, :phone_number, :product, :website, :image, :profile, plots_attributes: [:id, :name, :_destroy])
   end
 
   def set_farmer

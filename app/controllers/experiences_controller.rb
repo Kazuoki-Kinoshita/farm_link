@@ -3,14 +3,16 @@ class ExperiencesController < ApplicationController
   before_action :redirect_unless_farmer, only: [:index, :new, :create, :edit, :update, :destroy]
 
   def index
-    @experiences = current_user.farmer.experiences
+    @experiences = current_user.farmer.experiences.includes(:plots)
   end
 
   def show
+    @plots = @experience.plots
   end
 
   def new
     @experience = Experience.new
+    @plots = current_user.farmer.plots
   end
 
   def create
@@ -23,6 +25,7 @@ class ExperiencesController < ApplicationController
   end
 
   def edit
+    @plots = current_user.farmer.plots
   end
 
   def update
@@ -42,7 +45,7 @@ class ExperiencesController < ApplicationController
   private
 
   def experience_params
-    params.require(:experience).permit(:title, :content, images: [])
+    params.require(:experience).permit(:title, :content, images: [], plot_ids: [])
   end
 
   def set_experience

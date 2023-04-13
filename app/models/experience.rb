@@ -1,5 +1,7 @@
 class Experience < ApplicationRecord
   belongs_to :farmer
+  has_many :experience_plots, dependent: :destroy
+  has_many :plots, through: :experience_plots
   has_many_attached :images
 
   validates :title, presence: true, length: { maximum: 255 }

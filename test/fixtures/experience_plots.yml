@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  plot: one
+  experience: one
+  created_at: 2023-04-13 10:56:09
+
+two:
+  plot: two
+  experience: two
+  created_at: 2023-04-13 10:56:09
