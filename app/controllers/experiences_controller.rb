@@ -18,14 +18,15 @@ class ExperiencesController < ApplicationController
   def create
     @experience = current_user.farmer.experiences.build(experience_params)
     if @experience.save
-      redirect_to @experience, notice: "体験情報が保存されました。"
+      redirect_to @experience, notice: "体験情報が保存されました。次は体験スケジュールを入れてください！"
     else
       render :new
     end
   end
 
   def edit
-    @plots = current_user.farmer.plots
+    @plots = @experience.plots
+    @schedules = @experience.schedules
   end
 
   def update
