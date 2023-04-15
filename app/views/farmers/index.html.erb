@@ -1,5 +1,82 @@
 <%= render 'search', q: @q, url: root_path %>
 
+<style>
+  #map {
+    height: 800px;
+    width: 1200px;
+    display: none;
+  }
+</style>
+
+<button id="toggleMap">地図を表示</button>
+<div id="map" data-farmers="<%= @farmers.to_json(only: [:id, :name, :latitude, :longitude, :address]) %>"></div>
+
+<script type="text/javascript">
+  let map;
+  let markers = [];
+
+  function fitBounds(map, markers) {
+    if (markers.length === 0) return;
+
+    const bounds = new google.maps.LatLngBounds();
+    markers.forEach((marker) => {
+      bounds.extend(marker.getPosition());
+    });
+
+    map.fitBounds(bounds);
+  }
+
+  function initMap() {
+    const mapElement = document.getElementById('map');
+    const farmersData = JSON.parse(mapElement.dataset.farmers);
+    const defaultCenter = { lat: 38.5, lng: 139 };
+
+    const mapInstance = new google.maps.Map(mapElement, {
+      zoom: 6,
+      center: defaultCenter,
+    });
+
+    map = mapInstance;
+
+    farmersData.forEach((farmer) => {
+      const farmerPosition = { lat: farmer.latitude, lng: farmer.longitude };
+
+      const contentString = `<a href="/farmers/${farmer.id}/overview">${farmer.name}</a><br>住所：${farmer.address}`;
+
+      const infowindow = new google.maps.InfoWindow({
+        content: contentString,
+      });
+
+      const marker = new google.maps.Marker({
+        position: farmerPosition,
+        map: map,
+        title: contentString,
+      });
+
+      markers.push(marker);
+
+      marker.addListener('click', function () {
+        infowindow.open(map, marker);
+      });
+    });
+  }
+
+  document.getElementById('toggleMap').addEventListener('click', function () {
+    const mapElement = document.getElementById('map');
+    if (mapElement.style.display === 'none') {
+      mapElement.style.display = 'block';
+      this.textContent = '地図を非表示';
+      fitBounds(map, markers);
+    } else {
+      mapElement.style.display = 'none';
+      this.textContent = '地図を表示';
+    }
+  });
+</script>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
+</script>
+
 <% @farmers.each do |farmer| %>
   <div>
     <% if farmer.image.attached? %>

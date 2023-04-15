@@ -30,6 +30,8 @@ gem 'cancancan'
 gem 'active_hash'
 gem 'ransack'
 gem 'cocoon'
+gem 'dotenv-rails'
+gem 'geocoder'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
