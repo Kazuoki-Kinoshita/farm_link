@@ -1,4 +1,4 @@
-ActiveRecord::Schema.define(version: 2023_04_13_015609) do
+ActiveRecord::Schema.define(version: 2023_04_15_121303) do
 
   enable_extension "plpgsql"
 
@@ -52,8 +52,6 @@ ActiveRecord::Schema.define(version: 2023_04_13_015609) do
     t.bigint "farmer_id", null: false
     t.string "title", null: false
     t.text "content", null: false
-    t.datetime "start_time"
-    t.datetime "end_time"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["farmer_id"], name: "index_experiences_on_farmer_id"
@@ -122,6 +120,16 @@ ActiveRecord::Schema.define(version: 2023_04_13_015609) do
     t.index ["follower_id"], name: "index_relationships_on_follower_id"
   end
 
+  create_table "schedules", force: :cascade do |t|
+    t.bigint "experience_id", null: false
+    t.string "title", null: false
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["experience_id"], name: "index_schedules_on_experience_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.integer "role", null: false
     t.string "name", null: false
@@ -152,4 +160,5 @@ ActiveRecord::Schema.define(version: 2023_04_13_015609) do
   add_foreign_key "messages", "users"
   add_foreign_key "plots", "farmers"
   add_foreign_key "posts", "farmers"
+  add_foreign_key "schedules", "experiences"
 end
