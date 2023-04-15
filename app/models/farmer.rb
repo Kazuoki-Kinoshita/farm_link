@@ -7,6 +7,8 @@ class Farmer < ApplicationRecord
   has_many :experiences, dependent: :destroy
   has_many :plots, dependent: :destroy
   accepts_nested_attributes_for :plots, allow_destroy: true, reject_if: :all_blank
+  geocoded_by :address
+  after_validation :geocode, if: :address_changed?
 
   validates :name, presence: true, length: { maximum: 100 }
   validates :prefecture_id, presence: true
