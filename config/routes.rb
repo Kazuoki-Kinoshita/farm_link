@@ -3,16 +3,18 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
-  resources :users, only: [:show, :index]
-  resources :relationships, only: [:create, :destroy]
 
   root 'farmers#index'
+  resources :users, only: [:show, :index]
+  resources :relationships, only: [:create, :destroy]
   resources :generals, only: [:new, :create, :show, :edit, :update]
   resources :farmers, only: [:index, :new, :create, :show, :edit, :update] do
     get 'overview', on: :member
   end
   resources :posts
-  resources :experiences
+  resources :experiences do
+    resources :schedules, only: [:create, :edit, :update, :destroy]
+  end
   resources :conversations do
     resources :messages
   end
