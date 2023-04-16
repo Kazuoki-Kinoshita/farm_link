@@ -1,0 +1,19 @@
+<% if posts.any? %>
+  <ul>
+    <% posts.each do |post| %>
+      <li>
+        <h3><%= post.title %></h3>
+        <p><%= post.content %></p>
+        <% if post.images.attached? %>
+        <div>
+          <% post.images.each do |image| %>
+            <%= image_tag(image, alt: "Post Image", style: "max-width: 100%;") %>
+          <% end %>
+        </div>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>まだ投稿はありません。</p>
+<% end %>

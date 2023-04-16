@@ -39,8 +39,8 @@ class FarmersController < ApplicationController
 
   def overview
     @user = @farmer.user
-    # @posts = @farmer.posts
-    # @experiences = @farmer.experiences
+    @posts = @farmer.posts
+    @experiences = @farmer.experiences.includes(:schedules) 
   end
   
   private
