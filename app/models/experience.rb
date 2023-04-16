@@ -8,10 +8,17 @@ class Experience < ApplicationRecord
   validates :title, presence: true, length: { maximum: 255 }
   validates :content, presence: true
   validate :validate_images
+  validate :must_have_at_least_one_plot
 
   def validate_images
     if images.attached? && images.length > 4
       errors.add(:images, 'は最大4枚までアップロードできます。')
+    end
+  end
+
+  def must_have_at_least_one_plot
+    if plot_ids.empty?
+      errors.add(:base, "区画名を最低1つ選択してください。")
     end
   end
 end

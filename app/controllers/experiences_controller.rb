@@ -20,12 +20,13 @@ class ExperiencesController < ApplicationController
     if @experience.save
       redirect_to @experience, notice: "体験情報が保存されました。次は体験スケジュールを入れてください！"
     else
+      @plots = current_user.farmer.plots
       render :new
     end
   end
 
   def edit
-    @plots = @experience.plots
+    @plots = current_user.farmer.plots
     @schedules = @experience.schedules
   end
 
