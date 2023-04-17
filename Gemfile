@@ -34,6 +34,8 @@ gem 'dotenv-rails'
 gem 'geocoder'
 gem 'rails-i18n'
 gem "simple_calendar", "~> 2.4"
+gem 'bootstrap'
+gem 'jquery-rails'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
