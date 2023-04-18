@@ -6,8 +6,10 @@
   <p>No image uploaded.</p>
 <% end %>
 
+<p>ユーザーネーム:<%= @general.name %></p>
 <p>検索エリア:<%= @general.prefecture.name %></p>
 <p>住所:<%= @general.address %></p>
+<p>好きな農作物:<%= @general.favorite_crop %></p>
 <p><%= render 'users/conversation_form', user: @user %></p>
 <%= link_to '編集', edit_general_path(@general) %>
 <%= link_to '戻る', root_path %>

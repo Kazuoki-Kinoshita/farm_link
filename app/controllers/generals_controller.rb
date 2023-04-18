@@ -35,7 +35,7 @@ class GeneralsController < ApplicationController
   private
 
   def general_params
-    params.require(:general).permit(:prefecture_id, :address, :image)
+    params.require(:general).permit(:name, :prefecture_id, :address, :favorite_crop, :image)
   end
 
   def set_general

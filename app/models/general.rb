@@ -4,6 +4,7 @@ class General < ApplicationRecord
   belongs_to :user
   has_one_attached :image
 
+  validates :name, presence: true, length: { maximum: 255 }
   validates :prefecture_id, presence: true
   validates :address, presence: true, length: { maximum: 255 }
 end

@@ -9,10 +9,14 @@
     </div>
   <% end %>
 
+  <%= f.label :name, "ユーザーネーム" %>
+  <%= f.text_field :name %>
   <%= f.label :prefecture_id, "検索エリア"  %>
   <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, prompt: "都道府県を選択してください" %>
   <%= f.label :address, "住所" %>
   <%= f.text_field :address %>
+  <%= f.label :favorite_crop, "好きな農作物" %>
+  <%= f.text_field :favorite_crop %>
   <%= f.label :image, "プロフィール写真" %>
   <%= f.file_field :image %>
   <%= f.submit %>

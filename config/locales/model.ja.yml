@@ -19,8 +19,10 @@ ja:
       plot:
         name: 区間名
       general:
-        prefecture_id: 検索エリア
-        address: 住所
+        name: ユーザーネーム
+        prefecture_id: 都道府県
+        address: 市区町村
+        favorite_crop: 好きな農作物
       post:
         title: タイトル
         content: 内容
