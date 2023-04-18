@@ -6,6 +6,7 @@ ja:
       post: 投稿
       experience: 体験情報
       plot: 区間
+      user: ユーザー
     attributes:
       farmer:
         name: 農家名
@@ -28,6 +29,8 @@ ja:
         title: タイトル
         content: 体験情報    
         images: 画像
-  errors:
+      user:
+        role: ""
     messages:
+  errors:
       empty: "最低1つの区画名を入力してください。"

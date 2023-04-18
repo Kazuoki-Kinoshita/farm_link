@@ -1,0 +1,23 @@
+.devise-container {
+  max-width: 700px;
+  
+::placeholder {
+  color: rgba(0, 0, 0, 0.35);
+}
+  
+.role-selection {
+  .role-radio {
+    display: none;
+  }
+}
+
+.role-label {
+  font-size: 1.2rem;
+  padding: 8px 12px;
+}
+
+.role-radio:checked + .role-label {
+  background-color: #007bff;
+  color: #ffffff;
+}
+}
