@@ -1,15 +1,41 @@
-<h1>プロフィール</h1>
-<%= render 'users/follow_form', user: @user %>
-<% if @general.image.attached? %>
-  <%= image_tag @general.image, alt: "General Image" %>
-<% else %>
-  <p>No image uploaded.</p>
-<% end %>
+<div class="container">
+  <h2 class="text-center mb-4">プロフィール</h2>
 
-<p>ユーザーネーム:<%= @general.name %></p>
-<p>検索エリア:<%= @general.prefecture.name %></p>
-<p>住所:<%= @general.address %></p>
-<p>好きな農作物:<%= @general.favorite_crop %></p>
-<p><%= render 'users/conversation_form', user: @user %></p>
-<%= link_to '編集', edit_general_path(@general) %>
-<%= link_to '戻る', root_path %>
+  <div class="d-flex justify-content-center mb-4">
+    <div class="col-4">
+      <% if @general.image.attached? %>
+        <%= image_tag @general.image, alt: "プロフィール画像", class: "img-fluid" %>
+      <% else %>
+        <%= image_tag "no_image.jpg", alt: "No Image", class: "img-fluid" %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-3">ユーザーネーム</div>
+    <div class="col-9 pg-2 border-bottom"><%= @general.name %></div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-3">都道府県</div>
+    <div class="col-9 pg-2 border-bottom"><%= @general.prefecture.name %></div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-3">市区町村</div>
+    <div class="col-9 pg-2 border-bottom"><%= @general.address %></div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-3">好きな農作物</div>
+    <div class="col-9 pg-2 border-bottom"><%= @general.favorite_crop %></div>
+  </div>
+
+  <div class="mb-4">
+    <%= link_to "編集", edit_general_path(@general), class: "btn btn-primary" %>
+  </div>
+
+  <div class="text-center">
+    <%= link_to "戻る", root_path %>
+  </div>
+</div>

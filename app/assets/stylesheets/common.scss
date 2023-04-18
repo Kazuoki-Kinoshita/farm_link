@@ -5,7 +5,7 @@
 //   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 // }
 
-// header, footer
+// navbar
 .navbar {
   background-color: #006400;
 }
@@ -34,6 +34,7 @@
   margin-left: auto
 }
 
+// body
 body {
   display: flex;
   flex-direction: column;
@@ -46,6 +47,7 @@ main {
   margin: 0 auto;
 }
 
+// fotter
 .footer {
   background-color: #006400;
   text-align: center;
@@ -65,8 +67,16 @@ h2 {
 .container {
   margin: 0 auto;
   padding: 1.5rem;
+  max-width: 700px;
   background-color: #f8f9fa;
   border-radius: 5px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+::placeholder {
+  color: rgba(0, 0, 0, 0.35);
+}
+
+.img-fluid {
+  max-width: 100%;
+}

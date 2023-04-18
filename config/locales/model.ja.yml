@@ -23,6 +23,7 @@ ja:
         prefecture_id: 都道府県
         address: 市区町村
         favorite_crop: 好きな農作物
+        image: プロフィール画像
       post:
         title: タイトル
         content: 内容
