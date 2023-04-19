@@ -18,7 +18,7 @@
   <div class="mb-3">
     <%= f.label :prefecture_id, class: "form-label" %>
     <span class="badge bg-danger">必須</span>
-     <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, { prompt: "都道府県を選択してください" }, class: "form-control form-select#{" is-invalid" if general.errors.include?(:prefecture_id)}" %>
+     <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, { prompt: "都道府県を選択してください" }, class: "form-select#{" is-invalid" if general.errors.include?(:prefecture_id)}" %>
   </div>
 
   <div class="mb-3">
