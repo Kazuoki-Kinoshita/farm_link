@@ -1,16 +1,27 @@
-<h1>詳細</h1>
+<div class="container">
+  <h2 class="text-center mb-4">投稿詳細</h2>
 
-<h1><%= @post.title %></h1>
-<p>
-  <%= @post.content %>
-</p>
-
-<% if @post.images.attached? %>
-  <div>
-    <% @post.images.each do |image| %>
-      <%= image_tag(image, alt: "Post Image", style: "max-width: 100%;") %>
-    <% end %>
+  <div class="mb-3 border-bottom">
+    <div class="col">
+      <h4 class="mb-0"><%= @post.title %></h4>
+    </div>
   </div>
-<% end %>
 
-<%= link_to "戻る", posts_path %>
+  <div class="mb-3">
+    <div class="col">
+      <%= @post.content %>
+    </div>
+  </div>
+
+  <% if @post.images.attached? %>
+    <div class="mb-3">
+      <% @post.images.each do |image| %>
+        <%= image_tag(image, alt: "投稿画像", class: "img-fluid mb-2") %>
+      <% end %>
+    </div>
+  <% end %>
+  
+  <div class="text-center">
+    <%= link_to "投稿一覧へ", posts_path %>
+  </div>
+</div>

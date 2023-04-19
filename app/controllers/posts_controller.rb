@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :redirect_unless_farmer, only: [:index, :new, :create, :edit, :update, :destroy]
  
   def index
-    @posts = current_user.farmer.posts
+    @posts = current_user.farmer.posts.created_at_sorted
   end
 
   def show

@@ -44,7 +44,7 @@
               <% elsif current_user.role == "farmer" %>
                 <% if current_user.farmer&.persisted? %>
                   <li class="nav-item">
-                    <%= link_to "投稿する", new_post_path, class: "nav-link" %>
+                    <%= link_to "投稿する", posts_path, class: "nav-link" %>
                   </li>
                   <li class="nav-item">
                     <%= link_to "体験情報を登録する", experiences_path, class: "nav-link" %>
@@ -56,8 +56,6 @@
                       <%= link_to "プロフィール", farmer_path(current_user.farmer), class: "dropdown-item" %>
                       <%= link_to "お気に入り一覧", "#", class: "dropdown-item" %>
                       <%= link_to "メッセージ一覧", conversations_path, class: "dropdown-item" %>
-                      <%= link_to "投稿一覧", posts_path, class: "dropdown-item" %>
-                      <%= link_to "体験情報一覧", experiences_path, class: "dropdown-item" %>
                     </div>
                   </li>
                 <% else %>

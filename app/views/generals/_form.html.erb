@@ -10,7 +10,7 @@
   <% end %>
 
   <div class="mb-3">
-    <%= f.label :name, class: "form-label d-inline-block"%>
+    <%= f.label :name, class: "form-label "%>
     <span class="badge bg-danger">必須</span>
     <%= f.text_field :name, class: "form-control#{" is-invalid" if general.errors.include?(:name)}", placeholder: "ユーザーネームを入力してください" %>
   </div>
