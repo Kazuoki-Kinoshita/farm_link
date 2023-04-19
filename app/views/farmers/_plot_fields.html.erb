@@ -1,5 +1,12 @@
-<div class="nested-fields">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+<div class="nested-fields col-md-6">
+  <%= f.label :name, class: "form-label" %>
+  <% if f.options[:child_index] == 0 %>
+    <span class="badge bg-danger">必須</span>
+  <% else %>
+    <span class="badge bg-secondary">任意</span>
+  <% end %>
+  <%= f.text_field :name, class: "form-control", placeholder: "農地カテゴリ（畑、水田、果樹園など）を入力してください" %>
+  <% unless f.options[:child_index] == 0 %>
     <%= link_to_remove_association '削除', f, class: 'remove-plot' %>
+  <% end %>
 </div>

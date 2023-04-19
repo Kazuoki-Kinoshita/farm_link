@@ -29,9 +29,9 @@ class Farmer < ApplicationRecord
   end
 
   def validate_plot_presence
-    valid_plots = plots.reject(&:marked_for_destruction?)
-    if valid_plots.empty?
-      errors.add(:base, :empty)
+    valid_plots = plots.reject(&:marked_for_destruction?) # 削除される予定のプロットを除外し、残りのプロットを代入
+    if valid_plots.empty? || valid_plots.all? { |plot| plot.name.blank? }
+      errors.add(:base, "農地カテゴリを入力してください")
     end
   end
 end

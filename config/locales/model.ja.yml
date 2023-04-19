@@ -9,16 +9,16 @@ ja:
       user: ユーザー
     attributes:
       farmer:
-        name: 農家名
-        prefecture_id: 都道府県
+        name: 農園・農家名
+        prefecture_id: エリア
         address: 住所
         station: 最寄り駅
-        phone_number: 電話番号
-        product: 農産物
-        website: ウェブサイト
-        profile: プロフィール
+        product: 農作物
+        website: Webサイト
+        image: プロフィール画像
+        profile: 詳細情報
       plot:
-        name: 区間名
+        name: 農地カテゴリ
       general:
         name: ユーザーネーム
         prefecture_id: 都道府県

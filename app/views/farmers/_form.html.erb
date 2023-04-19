@@ -9,55 +9,62 @@
     </div>
   <% end %>
 
-  <div>
-    <%= f.label :name, "農家名" %>
-    <%= f.text_field :name %>
+  <div class="mb-3 col-md-6">
+    <%= f.label :name, class: "form-label" %>
+    <span class="badge bg-danger">必須</span>
+    <%= f.text_field :name, class: "form-control#{" is-invalid" if farmer.errors.include?(:name)}", placeholder: "農園・農家名を入力してください" %>
   </div>
 
-  <div>
-    <%= f.label :prefecture_id, "都道府県" %>
-    <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, prompt: "都道府県を選択してください" %> 
+  <div class="mb-3 col-md-6">
+    <%= f.label :prefecture_id, class: "form-label" %>
+    <span class="badge bg-danger">必須</span>
+    <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, { prompt: "都道府県を選択してください" }, class: "form-select#{" is-invalid" if farmer.errors.include?(:prefecture_id)}" %>
   </div>
 
-  <div>
-    <%= f.label :address, "住所" %>
-    <%= f.text_field :address %>
+  <div class="mb-3 col-md-6">
+    <%= f.label :address, class: "form-label" %>
+    <span class="badge bg-danger">必須</span>
+    <%= f.text_field :address, class: "form-control#{" is-invalid" if farmer.errors.include?(:address)}", placeholder: "農園・農地の住所を入力してください" %>
   </div>
 
-  <div>
-    <%= f.label :station, "最寄り駅" %>
-    <%= f.text_field :station %>
+  <div class="mb-3 col-md-6">
+    <%= f.label :station, class: "form-label" %>
+    <span class="badge bg-danger">必須</span>
+    <%= f.text_field :station, class: "form-control#{" is-invalid" if farmer.errors.include?(:station)}", placeholder: "最寄り駅を入力してください" %>
   </div>
 
-  <div class="nested-fields">
+  <div class="nested-fields mb-3">
     <%= f.fields_for :plots do |plot_f| %>
       <%= render 'plot_fields', f: plot_f %>
     <% end %>
-    <%= link_to_add_association '区画名追加', f, :plots, class: "links" %>
+    <%= link_to_add_association '農地カテゴリ追加', f, :plots, class: "links" %>
   </div>
 
-  <div>
-    <%= f.label :product, "農産物" %>
-    <%= f.text_field :product %>
+  <div class="mb-3 col-md-6">
+    <%= f.label :product, class: "form-label" %>
+    <span class="badge bg-danger">必須</span>
+    <%= f.text_field :product, class: "form-control#{" is-invalid" if farmer.errors.include?(:product)}", placeholder: "農作物を入力してください" %>
   </div>
 
-  <div>
-    <%= f.label :website, "WEBサイト" %>
-    <%= f.text_field :website %>
+  <div class="mb-3 col-md-6">
+    <%= f.label :website, class: "form-label" %>
+    <span class="badge bg-secondary">任意</span>
+    <%= f.text_field :website, class: "form-control#{" is-invalid" if farmer.errors.include?(:website)}", placeholder: "WebサイトのURLを入力してください" %>
   </div>
 
-  <div>
-    <%= f.label :image, "プロフィール画像" %>
-    <%= f.file_field :image %> 
-  </div>
-  
-  <div>
-    <%= f.label :profile, "農家詳細" %>
-    <%= f.text_area :profile %>
+  <div class="mb-3 col-md-6">
+    <%= f.label :image, class: "form-label" %>
+    <span class="badge bg-secondary">任意</span>
+    <%= f.file_field :image, class: "form-control" %>
   </div>
 
-  <div>
-    <%= f.submit %>
+  <div class="mb-3">
+    <%= f.label :profile, class: "form-label" %>
+    <span class="badge bg-secondary">任意</span>
+    <%= f.text_area :profile, class: "form-control#{" is-invalid" if farmer.errors.include?(:profile)}", placeholder: "詳細情報を入力してください", rows: 8  %>
   </div>
 
+  <div class="mb-4">
+    <%= f.submit class: "btn btn-primary w-100" %>
+  </div>
 <% end %>

@@ -1,12 +1,10 @@
-<%= render 'search', q: @q, url: root_path %>
+<% content_for :main_image do %>
+  <div class="main-image">
+    <%= image_tag "main_image.jpg", alt: "Main Image", class: "img-fluid" %>
+  </div>
+<% end %>
 
-<style>
-  #map {
-    height: 800px;
-    width: 1200px;
-    display: none;
-  }
-</style>
+<%= render 'search', q: @q, url: root_path %>
 
 <button id="toggleMap">地図を表示</button>
 <div id="map" data-farmers="<%= @farmers.to_json(only: [:id, :name, :latitude, :longitude, :address]) %>"></div>
@@ -32,7 +30,7 @@
     const defaultCenter = { lat: 38.5, lng: 139 };
 
     const mapInstance = new google.maps.Map(mapElement, {
-      zoom: 6,
+      zoom: 6.3,
       center: defaultCenter,
     });
 
@@ -77,18 +75,24 @@
 <script async defer src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
 </script>
 
-<% @farmers.each do |farmer| %>
-  <div>
-    <% if farmer.image.attached? %>
-      <%= image_tag farmer.image, alt: "Farmer Image" %>
-    <% else %>
-      <p>No image uploaded.</p>
+<div class="container">
+  <div class="row">
+    <% @farmers.each do |farmer| %>
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <% if farmer.image.attached? %>
+            <%= image_tag farmer.image, alt: "Farmer Image", class: "card-img-top" %>
+          <% else %>
+            <p>No image uploaded.</p>
+          <% end %>
+          <div class="card-body">
+            <h3 class="card-title"><%= farmer.name %></h3>
+            <p class="card-text"><%= farmer.prefecture.name %></p>
+            <p class="card-text"><%= farmer.product %></p>
+            <%= link_to '詳細', overview_farmer_path(farmer), class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
     <% end %>
-
-    <h3><%= farmer.name %></h3>
-    <p><%= farmer.prefecture.name %></p>
-    <p><%= farmer.product %></p>
-    <%= link_to '詳細', overview_farmer_path(farmer), data: {turbolinks: "false"} %>
   </div>
-  <% end %>
 </div>

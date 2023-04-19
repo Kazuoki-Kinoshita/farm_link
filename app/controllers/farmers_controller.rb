@@ -22,6 +22,7 @@ class FarmersController < ApplicationController
     if @farmer.save
       redirect_to @farmer, notice: "プロフィールが登録されました。"
     else
+      @farmer.plots.build if @farmer.plots.empty?
       render :new
     end
   end
