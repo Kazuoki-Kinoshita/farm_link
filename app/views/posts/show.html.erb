@@ -9,16 +9,14 @@
 
   <div class="mb-3">
     <div class="col">
-      <%= @post.content %>
+      <%= simple_format(@post.content) %>
     </div>
   </div>
 
   <% if @post.images.attached? %>
-    <div class="mb-3">
-      <% @post.images.each do |image| %>
-        <%= image_tag(image, alt: "投稿画像", class: "img-fluid mb-2") %>
-      <% end %>
-    </div>
+    <% @post.images.each do |image| %>
+      <%= image_tag(image, alt: "投稿画像", class: "img-fluid mb-2") %>
+    <% end %>
   <% end %>
   
   <div class="text-center">

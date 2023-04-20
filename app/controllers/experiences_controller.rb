@@ -3,7 +3,7 @@ class ExperiencesController < ApplicationController
   before_action :redirect_unless_farmer, only: [:index, :new, :create, :edit, :update, :destroy]
 
   def index
-    @experiences = current_user.farmer.experiences.includes(:plots)
+    @experiences = current_user.farmer.experiences.includes(:plots).created_at_sorted
   end
 
   def show
@@ -32,7 +32,7 @@ class ExperiencesController < ApplicationController
 
   def update
     if @experience.update(experience_params)
-      redirect_to @experience, notice: "体験情報が更新されました。"
+      redirect_to experience_path(@experience, anchor: "detail_section"), flash: { edit_notice: "体験情報が更新されました。" }
     else
       render :edit
     end

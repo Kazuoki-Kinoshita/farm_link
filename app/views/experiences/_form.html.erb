@@ -9,27 +9,38 @@
     </div>
   <% end %>
 
-  <div>
-    <%= f.label :plot_ids, "区画名" %><br>
-    <%= f.collection_check_boxes :plot_ids, @plots, :id, :name %>
+  <div class="mb-3">
+    <%= f.label :plot_ids, class: "form-label" %>
+    <span class="badge bg-danger">必須</span>
+    <div class="d-flex">
+      <%= f.collection_check_boxes :plot_ids, @plots, :id, :name do |b| %>
+        <div class="form-check form-check-inline">
+          <%= b.check_box(class: "form-check-input") %>
+          <%= b.label(class: "form-check-label") %>
+        </div>
+      <% end %>
+    </div>
   </div>
 
-  <div>
-    <%= f.label :title %>
-    <%= f.text_field :title %>
+  <div class="mb-3">
+    <%= f.label :title, class: "form-label"%>
+    <span class="badge bg-danger">必須</span>
+    <%= f.text_field :title, class: "form-control#{" is-invalid" if experience.errors.include?(:title)}", placeholder: "タイトルを入力してください" %>
   </div>
 
-  <div>
-    <%= f.label :content %>
-    <%= f.text_area :content %>
+  <div class="mb-3">
+    <%= f.label :content, class: "form-label"%>
+    <span class="badge bg-danger">必須</span>
+    <%= f.text_area :content, class: "form-control#{" is-invalid" if experience.errors.include?(:content)}", placeholder: "体験情報を入力してください", rows: 15 %>
   </div>
 
-  <div>
-    <%= f.label :images %>
-    <%= f.file_field :images, multiple: true %>
+  <div class="mb-3">
+    <%= f.label :images, class: "form-label" %>
+    <span class="badge bg-secondary">任意</span>
+    <%= f.file_field :images, multiple: true, class: "form-control" %>
   </div>
 
-  <div>
-    <%= f.submit %>
+  <div class="mb-4">
+    <%= f.submit class: "btn btn-primary w-100" %>
   </div>
 <% end %>

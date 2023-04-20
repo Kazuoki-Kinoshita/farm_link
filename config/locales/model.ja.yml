@@ -5,7 +5,7 @@ ja:
       general: 一般
       post: 投稿
       experience: 体験情報
-      plot: 区間
+      plot: 農地カテゴリ
       user: ユーザー
     attributes:
       farmer:
@@ -33,8 +33,9 @@ ja:
         title: タイトル
         content: 体験情報    
         images: 画像
+        plot_ids: 農地カテゴリ
       user:
         role: ""
     messages:
   errors:
-      empty: "最低1つの区画名を入力してください。"
+      empty: "最低1つの農地カテゴリを入力してください。"

@@ -10,15 +10,19 @@ class Experience < ApplicationRecord
   validate :validate_images
   validate :must_have_at_least_one_plot
 
+  scope :created_at_sorted, -> { order(created_at: :desc) }
+
+  private
+
   def validate_images
     if images.attached? && images.length > 4
-      errors.add(:images, 'は最大4枚までアップロードできます。')
+      errors.add(:images, 'は最大4枚までアップロードできます')
     end
   end
 
   def must_have_at_least_one_plot
     if plot_ids.empty?
-      errors.add(:base, "区画名を最低1つ選択してください。")
+      errors.add(:base, "農地カテゴリを選択してください")
     end
   end
 end
