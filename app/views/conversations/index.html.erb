@@ -1,14 +1,25 @@
-<table class="table table-hover">
-  <thead>
-    <h2>メッセージ一覧</h2>
-  </thead>
-  <tbody>
-    <% @conversations.each do |conversation| %>
-      <td>
-        <% if conversation.target_user(current_user).present? %>
-          <%= link_to conversation.target_user(current_user).name, conversation_messages_path(conversation)%>
-        <% end %>
-      </td>
+<div class="container">
+  <h2 class="text-center mb-4">メッセージ一覧</h2>
+
+  <% @conversations.each do |conversation| %>
+    <% target_user = conversation.target_user(current_user) %>
+    <% if target_user.present? %>
+      <div class="mb-4 d-flex align-items-center border-bottom">
+        <div class="col-9">
+          <% if target_user.role == "farmer" %>
+            <%= link_to target_user.farmer.name, overview_farmer_path(target_user.farmer), class: "text-decoration-none" %>
+          <% elsif target_user.role == "general" %>
+            <%= link_to target_user.general.name, general_path(target_user.general), class: "text-decoration-none"%>
+          <% end %>
+        </div> 
+        <div class="col-3">
+          <%= link_to "メッセージ", conversation_messages_path(conversation), class: "btn btn-outline-secondary" %>
+        </div>
+      </div>
     <% end %>
-  </tbody>
-</table>
+  <% end %>
+  
+  <div class="text-center">
+    <%= link_to "戻る", farmers_path %>
+  </div>
+</div>
