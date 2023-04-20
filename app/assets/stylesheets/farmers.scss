@@ -2,6 +2,10 @@
   max-width: 1300px;
 }
 
+.farmer-wide-container {
+  max-width: 1600px;
+}
+
 // farmer index.html.erb
 .main-image img {
   width: 100%;
@@ -26,10 +30,10 @@
   height: 350px;
 }
 
-// #map {
-//   height: 900px;
-//   width: 100%;
-//   display: none;
-//   max-width: 1500px;
-//   margin: 0 auto;
-// }
+#map {
+  height: 900px;
+  width: 100%;
+  display: none;
+  max-width: 1500px;
+  margin: 0 auto;
+}

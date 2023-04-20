@@ -16,8 +16,8 @@ class Ability
         can [:show, :new, :create, :edit, :update], General, user_id: user.id
       end
     end
-    can :index, Farmer
+    can :read, Farmer
     can :overview, Farmer
-    can :read, General
+    can :show, General 
   end
 end

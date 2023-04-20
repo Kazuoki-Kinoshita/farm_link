@@ -29,7 +29,7 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                       <%= link_to "アカウント情報", user_path(current_user), class: "dropdown-item" %>
                       <%= link_to "プロフィール", general_path(current_user.general), class: "dropdown-item" %>
-                      <%= link_to "お気に入り一覧", "#", class: "dropdown-item" %>
+                      <%= link_to "お気に入り一覧", follows_user_path(current_user), class: "dropdown-item" %>
                       <%= link_to "メッセージ一覧", conversations_path, class: "dropdown-item" %>
                     </div>
                   </li>
@@ -44,17 +44,17 @@
               <% elsif current_user.role == "farmer" %>
                 <% if current_user.farmer&.persisted? %>
                   <li class="nav-item">
-                    <%= link_to "投稿する", posts_path, class: "nav-link" %>
+                    <%= link_to "投稿ページ", posts_path, class: "nav-link" %>
                   </li>
                   <li class="nav-item">
-                    <%= link_to "体験情報を登録する", experiences_path, class: "nav-link" %>
+                    <%= link_to "体験情報ページ", experiences_path, class: "nav-link" %>
                   </li>                                                            
                   <li class="nav-item dropdown">
                     <%= link_to "マイページ", "#", class: "nav-link dropdown-toggle", id: "navbarDropdown", role: "button", data: { toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" } %>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                       <%= link_to "アカウント情報", user_path(current_user), class: "dropdown-item" %>
                       <%= link_to "プロフィール", farmer_path(current_user.farmer), class: "dropdown-item" %>
-                      <%= link_to "お気に入り一覧", "#", class: "dropdown-item" %>
+                      <%= link_to "お気に入り一覧", follows_user_path(current_user), class: "dropdown-item" %>
                       <%= link_to "メッセージ一覧", conversations_path, class: "dropdown-item" %>
                     </div>
                   </li>
@@ -98,10 +98,7 @@
           <%= alert %>
         </div>
       <% end %>
-    
-      <div class="content">
-        <%= yield %>
-      </div>
+      <%= yield %>
     </main>
 
     <footer class="footer mt-auto py-3">

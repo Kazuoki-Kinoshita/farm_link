@@ -4,11 +4,11 @@
     <% unless current_user.following?(user) %>
       <%= form_with(model: current_user.active_relationships.build(followed_id: user.id)) do |f| %>
         <%= f.hidden_field :followed_id %>
-        <%= f.submit "フォロー" %>
+        <%= f.submit "フォロー",  class: "btn btn-outline-success" %>
       <% end %>
     <% else %>
       <%= form_with(model: current_user.active_relationships.find_by(followed_id: user.id), method: :delete) do |f| %>
-        <%= f.submit "フォロー解除" %>
+        <%= f.submit "フォロー解除", class: "btn btn-outline-danger", data: { confirm: "本当にフォローを解除してもよろしいですか？" } %>
       <% end %>
     <% end %>
   <% end %>

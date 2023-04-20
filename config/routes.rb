@@ -7,9 +7,13 @@ Rails.application.routes.draw do
   root 'farmers#index'
   resources :users, only: [:show, :index]
   resources :relationships, only: [:create, :destroy]
+  resources :users, only: [:show] do
+    get "follows", on: :member
+  end
+
   resources :generals, only: [:new, :create, :show, :edit, :update]
   resources :farmers, only: [:index, :new, :create, :show, :edit, :update] do
-    get 'overview', on: :member
+    get "overview", on: :member
   end
   resources :posts
   resources :experiences do

@@ -31,8 +31,9 @@
     <div class="col-9 pg-2 border-bottom"><%= @general.favorite_crop %></div>
   </div>
 
-  <div class="mb-4">
-    <%= link_to "編集", edit_general_path(@general), class: "btn btn-primary" %>
+  <div class="d-flex">
+    <%= link_to "編集", edit_general_path(@general), class: "btn btn-secondary me-2" %>
+    <%= render 'users/follow_form', user: @user %>
   </div>
 
   <div class="text-center">
