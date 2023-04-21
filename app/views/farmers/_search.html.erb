@@ -1,9 +1,7 @@
 <%= search_form_for @q, url: url do |f| %>
-  <%= f.label :name_or_product_or_address_cont, "キーワード" %>
-  <%= f.search_field :name_or_product_or_address_cont %>
-
+  <%= f.label :name_or_product_or_address_or_station_cont, "キーワード" %>
+  <%= f.search_field :name_or_product_or_address_or_station_cont, class: "me-3 custom-search-field", placeholder: "農作物、最寄駅などを入れてください" %>
   <%= f.label :prefecture_id_eq, "検索エリア" %>
-  <%= f.select :prefecture_id_eq, options_for_select(Prefecture.all.map { |p| [p.name, p.id] }, params[:q].try(:[], 'prefecture_id_eq')), { include_blank: 'すべて' } %>
-
-  <%= f.submit "検索" %>
+  <%= f.select :prefecture_id_eq, options_for_select(Prefecture.all.map { |p| [p.name, p.id] }, params[:q].try(:[], 'prefecture_id_eq')), { include_blank: 'すべて' }, class: "me-2"%>
+  <%= f.submit class: "btn btn-primary mx-3" %>
 <% end %>

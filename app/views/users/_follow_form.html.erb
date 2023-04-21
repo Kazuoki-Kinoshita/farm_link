@@ -9,7 +9,7 @@
     <% else %>
       <%= form_with(model: current_user.active_relationships.find_by(followed_id: user.id), method: :delete) do |f| %>
         <%= f.submit "フォロー解除", class: "btn btn-outline-danger me-2", data: { confirm: "本当にフォローを解除してもよろしいですか？" } %>
+</div>
       <% end %>
     <% end %>
   <% end %>
-</div>

@@ -4,7 +4,7 @@ class FarmersController < ApplicationController
 
   def index
     @q = Farmer.ransack(params[:q])
-    @farmers = @q.result(distinct: true)
+    @farmers = @q.result(distinct: true).created_at_sorted
   end
 
   def show

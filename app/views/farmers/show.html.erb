@@ -4,7 +4,7 @@
   <div class="d-flex justify-content-center mb-4">
     <div class="col-5">
       <% if @farmer.image.attached? %>
-        <%= image_tag @farmer.image, alt: "プロフィール画像", class: "img-fluid" %>
+        <%= image_tag @farmer.image, alt: "農家プロフィール画像", class: "img-fluid" %>
       <% else %>
         <%= image_tag "no_image.jpg", alt: "No Image", class: "img-fluid" %>
       <% end %>
@@ -12,28 +12,28 @@
   </div>
 
   <div class="row mb-3">
-    <div class="col-3">農園・農家名</div>
-    <div class="col-9 pg-2 border-bottom""><%= @farmer.name %></div>
+    <div class="col-2">農園・農家名</div>
+    <div class="col-10 pg-2 border-bottom""><%= @farmer.name %></div>
   </div>
 
   <div class="row mb-3">
-    <div class="col-3">エリア</div>
-    <div class="col-9 pg-2 border-bottom"><%= @farmer.prefecture.name %></div>
+    <div class="col-2">エリア</div>
+    <div class="col-10 pg-2 border-bottom"><%= @farmer.prefecture.name %></div>
   </div>
 
   <div class="row mb-3">
-    <div class="col-3">住所</div>
-    <div class="col-9 pg-2 border-bottom"><%= @farmer.address %></div>
+    <div class="col-2">住所</div>
+    <div class="col-10 pg-2 border-bottom"><%= @farmer.address %></div>
   </div>
 
   <div class="row mb-3">
-    <div class="col-3">最寄り駅</div>
-    <div class="col-9 pg-2 border-bottom"><%= @farmer.station %></div>
+    <div class="col-2">最寄り駅</div>
+    <div class="col-10 pg-2 border-bottom"><%= @farmer.station %></div>
   </div>
 
   <div class="row mb-4">
-    <div class="col-3"></div>
-    <div class="col-9">
+    <div class="col-2"></div>
+    <div class="col-10">
       <div id="show-map-container">
         <div id="show-map"></div>
       </div>
@@ -75,24 +75,24 @@
 
   <% @farmer.plots.each_with_index do |plot, index| %>
     <div class="row mb-3">
-      <div class="col-3">農地カテゴリ<%= index + 1 %></div>
-      <div class="col-9 pg-2 border-bottom"><%= plot.name %></div> 
+      <div class="col-2">農地カテゴリ<%= index + 1 %></div>
+      <div class="col-10 pg-2 border-bottom"><%= plot.name %></div> 
     </div>
   <% end %>
 
   <div class="row mb-3">
-    <div class="col-3">農作物</div>
-    <div class="col-9 pg-2 border-bottom"><%= @farmer.product %></div>
+    <div class="col-2">農作物</div>
+    <div class="col-10 pg-2 border-bottom"><%= @farmer.product %></div>
   </div>
 
   <div class="row mb-3">
-    <div class="col-3">Webサイト</div>
-    <div class="col-9 pg-2 border-bottom"><%= @farmer.website %></div>
+    <div class="col-2">Webサイト</div>
+    <div class="col-10 pg-2 border-bottom"><%= @farmer.website %></div>
   </div>
 
   <div class="row mb-3">
-    <div class="col-3">詳細情報</div>
-    <div class="col-9 pg-2 border-bottom"><%= @farmer.profile %></div>
+    <div class="col-2">詳細情報</div>
+    <div class="col-10 pg-2 border-bottom"><%= @farmer.profile %></div>
   </div>
 
   <div class="mb-4">

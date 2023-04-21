@@ -1,16 +1,16 @@
 <div class="container farmer-wide-container">
-
   <% content_for :main_image do %>
     <div class="main-image">
-      <%= image_tag "main_image.jpg", alt: "Main Image", class: "img-fluid" %>
+      <%= image_tag "main_image.jpg", alt: "メイン画像", class: "img-fluid" %>
     </div>
   <% end %>
 
-  <%= render 'search', q: @q, url: root_path %>
+  <div class="d-flex justify-content-center align-items-center mb-3">
+    <%= render 'search', q: @q, url: root_path, class: "me-3" %>
+    <button id="toggleMap" class="btn btn-secondary">地図を表示</button>
+  </div>
 
-  <button id="toggleMap">地図を表示</button>
   <div id="map" data-farmers="<%= @farmers.to_json(only: [:id, :name, :latitude, :longitude, :address]) %>"></div>
-
   <script type="text/javascript">
     let map;
     let markers = [];
@@ -18,12 +18,17 @@
     function fitBounds(map, markers) {
       if (markers.length === 0) return;
 
-      const bounds = new google.maps.LatLngBounds();
-      markers.forEach((marker) => {
-        bounds.extend(marker.getPosition());
-      });
+      if (markers.length === 1) {
+        map.setCenter(markers[0].getPosition());
+        map.setZoom(12);
+      } else {
+        const bounds = new google.maps.LatLngBounds();
+        markers.forEach((marker) => {
+          bounds.extend(marker.getPosition());
+        });
 
-      map.fitBounds(bounds);
+        map.fitBounds(bounds);
+      }
     }
 
     function initMap() {
@@ -32,7 +37,7 @@
       const defaultCenter = { lat: 38.5, lng: 139 };
 
       const mapInstance = new google.maps.Map(mapElement, {
-        zoom: 6.3,
+        zoom: 6,
         center: defaultCenter,
       });
 
@@ -77,20 +82,30 @@
   <script async defer src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
   </script>
 
-  <div class="row">
+  <% if @farmers.length.zero? %>
+    <div class="alert alert-info my-4">検索結果はありません</div>
+  <% end %>
+
+  <div class="row my-4">
     <% @farmers.each do |farmer| %>
       <div class="col-md-4 mb-4">
-        <div class="card">
-          <% if farmer.image.attached? %>
-            <%= image_tag farmer.image, alt: "Farmer Image", class: "card-img-top" %>
-          <% else %>
-            <p>No image uploaded.</p>
-          <% end %>
+        <div class="card h-100">
+          <div class="position-relative">
+            <% if farmer.image.attached? %>
+              <%= image_tag farmer.image, alt: "農家プロフィール画像", class: "card-img-top img-fluid farmer-image" %>
+            <% else %>
+              <%= image_tag "no_image.jpg", alt: "No Image", class: "card-img-top img-fluid farmer-image" %>
+            <% end %>
+            <span class="badge badge-secondary position-absolute farmer-badge"><%= farmer.prefecture.name %></span>
+          </div>
+
           <div class="card-body">
-            <h3 class="card-title"><%= farmer.name %></h3>
-            <p class="card-text"><%= farmer.prefecture.name %></p>
-            <p class="card-text"><%= farmer.product %></p>
-            <%= link_to '詳細', overview_farmer_path(farmer), class: "btn btn-primary" %>
+            <h4 class="card-title">
+              <%= link_to farmer.name, overview_farmer_path(farmer), style: "color: green; text-decoration: none;" %>
+            </h4>
+            <div class="card-text mb-2"><%= "住所：#{farmer.address}" %></div>
+            <div class="card-text mb-2"><%= "農作物：#{farmer.product}" %></div>
+            <%= link_to '詳細', overview_farmer_path(farmer), class: "btn btn-outline-secondary" %>
           </div>
         </div>
       </div>

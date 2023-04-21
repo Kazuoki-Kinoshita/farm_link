@@ -18,10 +18,12 @@ class Farmer < ApplicationRecord
   validates :website, length: { maximum: 255 }, format: { with: /\Ahttps?:\/\/[\S]+\z/, allow_blank: true }
   validate :validate_plot_presence
 
+  scope :created_at_sorted, -> { order(created_at: :desc) }
+
   private
   
   def self.ransackable_attributes(auth_object = nil)
-    ["address", "name", "product", "profile", "prefecture_id"]
+    ["address", "name", "product", "profile", "prefecture_id", "station"]
   end
 
   def self.ransackable_associations(auth_object = nil)
