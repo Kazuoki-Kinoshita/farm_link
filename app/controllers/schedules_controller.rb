@@ -1,9 +1,13 @@
 class SchedulesController < ApplicationController
+  load_and_authorize_resource :experience
+  load_and_authorize_resource :schedule, through: :experience, except: :create
   before_action :set_experience, only: [:create, :edit, :update, :destroy]
   before_action :set_schedule, only: [:edit, :update, :destroy]
 
   def create
     @schedule = @experience.schedules.build(schedule_params)
+    authorize! :create, @schedule
+    
     if @schedule.save
       redirect_to @experience, notice: "スケジュールが追加されました。"
     else

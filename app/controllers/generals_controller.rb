@@ -31,7 +31,6 @@ class GeneralsController < ApplicationController
     end
   end
   
-
   private
 
   def general_params

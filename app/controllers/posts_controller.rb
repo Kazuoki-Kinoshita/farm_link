@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :redirect_unless_farmer, only: [:index, :new, :create, :edit, :update, :destroy]
  
   def index
     @posts = current_user.farmer.posts.created_at_sorted
@@ -47,13 +47,5 @@ class PostsController < ApplicationController
 
   def set_post
     @post = Post.find(params[:id])
-  end
-
-  def redirect_unless_farmer
-    if current_user.nil? || current_user.general?
-      redirect_to root_path, alert: 'アクセス権限がありません。'
-    elsif current_user.farmer.nil?
-      redirect_to new_farmer_path, alert: 'まずはプロフィール登録をしてください。'
-    end
   end
 end
