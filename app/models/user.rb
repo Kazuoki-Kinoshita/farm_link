@@ -11,9 +11,12 @@ class User < ApplicationRecord
   has_many :passive_relationships, foreign_key: 'followed_id', class_name: 'Relationship', dependent: :destroy 
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
+  has_many :messages, dependent: :destroy
+  has_many :sent_conversations, foreign_key: :sender_id, class_name: 'Conversation', dependent: :destroy
+  has_many :received_conversations, foreign_key: :recipient_id, class_name: 'Conversation', dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 255 }
-  validates :role, presence: true
+  validates :role, presence: { message: "「農家の方」または「一般の方」を選択してください" }
 
   def follow!(other_user)
     active_relationships.create!(followed_id: other_user.id)

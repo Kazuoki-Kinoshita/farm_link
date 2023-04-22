@@ -1,19 +1,23 @@
-<% if posts.any? %>
-  <ul>
-    <% posts.each do |post| %>
-      <li>
-        <h3><%= post.title %></h3>
-        <p><%= post.content %></p>
-        <% if post.images.attached? %>
-        <div>
-          <% post.images.each do |image| %>
-            <%= image_tag(image, alt: "Post Image", style: "max-width: 100%;") %>
-          <% end %>
-        </div>
-        <% end %>
-      </li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>まだ投稿はありません。</p>
+<% @posts.each do |post| %>
+  <div class="card mb-4">
+    <div class="card-body">
+      <p class="card-text date"><%= post.created_at.strftime("%Y年%m月%d日") %></p>
+      <h5 class="card-title">
+        <%= link_to post.title, post_path(post), class: "text-decoration-none" %>
+      </h5>
+      <p class="card-text rows5"><%= simple_format(truncate(post.content, length: 200))  %></p>
+
+      <% post.images.each do |image| %>
+        <%= image_tag(image, alt: " 投稿画像", class: "img-fluid mb-2", style: "max-width: 23%;") %>
+      <% end %>
+
+      <div class="d-flex">
+        <%= link_to "詳細", post_path(post), class: "btn btn-outline-secondary me-2" %>
+      </div>
+    </div>
+  </div>
 <% end %>
+
+  <div class="text-center">
+  <%= link_to "戻る", farmers_path %>
+</div>

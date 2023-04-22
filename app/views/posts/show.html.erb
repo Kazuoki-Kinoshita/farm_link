@@ -1,16 +1,34 @@
-<h1>詳細</h1>
+<div class="container">
+  <h2 class="text-center mb-4">投稿</h2>
 
-<h1><%= @post.title %></h1>
-<p>
-  <%= @post.content %>
-</p>
-
-<% if @post.images.attached? %>
-  <div>
-    <% @post.images.each do |image| %>
-      <%= image_tag(image, alt: "Post Image", style: "max-width: 100%;") %>
-    <% end %>
+  <div class="d-flex justify-content-end">
+    <%= render 'users/follow_form', user: @post.farmer.user %>
+    <%= render 'users/conversation_form', user: @post.farmer.user %>
   </div>
-<% end %>
 
-<%= link_to "戻る", posts_path %>
+  <div class="mb-3 border-bottom">
+    <div class="col">
+      <h4 class="mb-0"><%= @post.title %></h4>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <div class="col">
+      <%= simple_format(@post.content) %>
+    </div>
+  </div>
+
+  <% if @post.images.attached? %>
+    <% @post.images.each do |image| %>
+      <%= image_tag(image, alt: "投稿画像", class: "img-fluid mb-2") %>
+    <% end %>
+  <% end %>
+  
+  <div class="text-center">
+    <% if current_user == @post.farmer.user %>
+      <%= link_to "投稿一覧へ", posts_path %>
+    <% else %>
+      <%= link_to "戻る", overview_farmer_path(@post.farmer) %>
+    <% end %> 
+  </div>
+</div>

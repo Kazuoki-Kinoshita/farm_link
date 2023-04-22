@@ -1,18 +1,41 @@
-<h1><%= @farmer.name %></h1>
-<%= render 'users/follow_form', user: @user %>
-<%= render 'users/conversation_form', user: @user %>
+<div class="d-flex justify-content-center mb-4">
+  <div class="col-5">
+    <% if @farmer.image.attached? %>
+      <%= image_tag @farmer.image, alt: "農家プロフィール画像", class: "img-fluid rounded" %>
+    <% else %>
+      <%= image_tag "no_image.jpg", alt: "No Image", class: "img-fluid rounded" %>
+    <% end %>
+  </div>
+</div>
+
+<div class="container farmer-wide-container">
+  <h2 class="text-center mb-4"><%= @farmer.name %></h2>
+   <div class="d-flex justify-content-end">
+    <%= render 'users/follow_form', user: @user %>
+    <%= render 'users/conversation_form', user: @user %>
+  </div>
 
   <ul class="nav nav-tabs">
-    <li>
-      <p>基本情報</p>
-      <%= render 'farmer_profile', farmer: @farmer %>
+    <li class="nav-item">
+      <a class="nav-link active" data-toggle="tab" href="#basic-info">基本情報</a>
     </li>
-    <li>
-      <p>体験情報</p>
-      <%= render 'farmers/farmer_experiences', experiences: @experiences %>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#experience-info">体験情報</a>
     </li>
-     <li>
-      <p>投稿一覧</p>
-      <%= render 'farmers/farmer_posts', posts: @posts %>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#posts-list">投稿一覧</a>
     </li>
   </ul>
+
+  <div class="tab-content mt-4">
+    <div class="tab-pane fade show active" id="basic-info">
+      <%= render 'farmers/farmer_profile', farmer: @farmer %>
+    </div>
+    <div class="tab-pane fade" id="experience-info">
+      <%= render 'farmers/farmer_experiences', experiences: @experiences %>
+    </div>
+    <div class="tab-pane fade" id="posts-list">
+      <%= render 'farmers/farmer_posts', posts: @posts %>
+    </div>
+  </div>
+</div>

@@ -13,16 +13,17 @@ class Farmer < ApplicationRecord
   validates :name, presence: true, length: { maximum: 100 }
   validates :prefecture_id, presence: true
   validates :address, presence: true, length: { maximum: 255 }
-  validates :phone_number, presence: true, format: { with: /\A\d{10,11}\z/, allow_blank: true }
-  validates :product, presence: true, length: { maximum: 100 }
+  validates :station, presence: true, length: { maximum: 255 }
+  validates :product, presence: true, length: { maximum: 255 }
   validates :website, length: { maximum: 255 }, format: { with: /\Ahttps?:\/\/[\S]+\z/, allow_blank: true }
-  validates :profile, length: { maximum: 2000 }
   validate :validate_plot_presence
+
+  scope :created_at_sorted, -> { order(created_at: :desc) }
 
   private
   
   def self.ransackable_attributes(auth_object = nil)
-    ["address", "name", "product", "profile", "prefecture_id"]
+    ["address", "name", "product", "profile", "prefecture_id", "station"]
   end
 
   def self.ransackable_associations(auth_object = nil)
@@ -30,9 +31,9 @@ class Farmer < ApplicationRecord
   end
 
   def validate_plot_presence
-    valid_plots = plots.reject(&:marked_for_destruction?)
-    if valid_plots.empty?
-      errors.add(:base, :empty)
+    valid_plots = plots.reject(&:marked_for_destruction?) # 削除される予定のプロットを除外し、残りのプロットを代入
+    if valid_plots.empty? || valid_plots.all? { |plot| plot.name.blank? }
+      errors.add(:base, "農地カテゴリを入力してください")
     end
   end
 end

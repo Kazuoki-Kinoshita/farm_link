@@ -4,7 +4,7 @@ class FarmersController < ApplicationController
 
   def index
     @q = Farmer.ransack(params[:q])
-    @farmers = @q.result(distinct: true)
+    @farmers = @q.result(distinct: true).created_at_sorted
   end
 
   def show
@@ -22,6 +22,7 @@ class FarmersController < ApplicationController
     if @farmer.save
       redirect_to @farmer, notice: "プロフィールが登録されました。"
     else
+      @farmer.plots.build if @farmer.plots.empty?
       render :new
     end
   end
@@ -46,7 +47,7 @@ class FarmersController < ApplicationController
   private
 
   def farmer_params
-    params.require(:farmer).permit(:name, :prefecture_id, :address, :latitude, :longitude, :phone_number, :product, :website, :image, :profile, plots_attributes: [:id, :name, :_destroy])
+    params.require(:farmer).permit(:name, :prefecture_id, :address, :latitude, :longitude, :station, :product, :website, :image, :profile, plots_attributes: [:id, :name, :_destroy])
   end
 
   def set_farmer

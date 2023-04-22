@@ -1,19 +1,36 @@
-<h1>体験情報一覧</h1>
+<div class="container experience-container">
+  <h2 class="text-center mb-4">体験情報一覧</h2>
 
-<%= link_to '体験情報を登録する', new_experience_path %>
-<% @experiences.each do |experience| %>
-  <div>
-    <h4>区画名:</h4>
-    <% experience.plots.each do |plot| %>
-      <%= plot.name %>
-    <% end %>
-    <h2><%= link_to experience.title, experience_path(experience) %></h2>
-    <p><%= experience.content %></p>
-    <% experience.images.each do |image| %>
-      <%= image_tag(image, alt: "Experience Image", style: "max-width: 100%;") %>
-    <% end %>
-    <%= link_to '詳細', experience_path(experience) %>
-    <%= link_to '編集', edit_experience_path(experience) %>
-    <%= link_to '削除', experience_path(experience), method: :delete, data: { confirm: '本当に削除しますか？' } %>
+
+  <%= link_to "体験情報を登録する", new_experience_path, class: "btn btn-primary btn-lg mb-4" %>
+
+  <% @experiences.each do |experience| %>
+    <div class="card mb-4">
+      <div class="card-body">
+        <% experience.plots.each do |plot| %>
+          <span class="badge bg-info fs-5 mb-3"><%= plot.name %></span>
+        <% end %> 
+        
+        <h5 class="card-title">
+          <%= link_to experience.title, experience_path(experience), class: "text-decoration-none" %>
+        </h5>
+        <p class="card-text rows5"><%= simple_format(truncate(experience.content, length: 300))  %></p>
+        
+        <% experience.images.each do |image| %>
+          <%= image_tag(image, alt: "体験情報画像", class: "img-fluid mb-2", style: "max-width: 24%;") %>
+        <% end %>
+        <div class="d-flex">
+
+          <%= link_to "カレンダー登録", experience_path(experience, anchor: "detail_section"), class: "btn btn-outline-primary me-2" %>
+          <%= link_to "詳細", experience_path(experience), class: "btn btn-outline-secondary me-2" %>
+          <%= link_to "編集", edit_experience_path(experience), class: "btn btn-secondary me-2" %>
+          <%= link_to "削除", experience_path(experience), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  
+   <div class="text-center">
+    <%= link_to "戻る", farmers_path %>
   </div>
-<% end %>
+</div>

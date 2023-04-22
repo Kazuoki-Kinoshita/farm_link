@@ -1,4 +1,6 @@
 class MessagesController < ApplicationController
+  before_action :authenticate_user!
+  before_action :ensure_profile_exists
   before_action :set_conversation
 
   def index

@@ -1,7 +1,27 @@
-<h1>アカウント情報</h1>
-<p>ユーザー名: <%= @user.name %></p>
-<p>メールアドレス: <%= @user.email %></p>
-<p>パスワード: ********</p>
-<%= link_to 'アカウント情報を編集', edit_user_registration_path %>
-<%= link_to 'アカウント情報を削除', user_registration_path, method: :delete, data: { confirm: 'アカウントを削除してもよろしいですか？この操作は取り消せません。' } %>
-<%= link_to '戻る', root_path %>
+<div class="container">
+  <h2 class="text-center mb-4">アカウント情報</h2>
+
+  <div class="row mb-3">
+    <div class="col-3">名前</div>
+    <div class="col-9 pg-2 border-bottom""><%= @user.name %></div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-3">メールアドレス</div>
+    <div class="col-9 pg-2 border-bottom"><%= @user.email %></div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-3 ">パスワード</div>
+    <div class="col-9 pg-2 border-bottom"">********</div>
+  </div>
+
+  <div class="mb-4">
+    <%= link_to "編集", edit_user_registration_path, class: "btn btn btn-secondary me-2" %>
+    <%= link_to "削除", user_registration_path, method: :delete, data: { confirm: "アカウントを削除してもよろしいですか？この操作は取り消せません。" }, class: "btn btn-danger" %>
+  </div>
+
+  <div class="text-center">
+    <%= link_to "戻る", farmers_path %>
+  </div>
+</div>

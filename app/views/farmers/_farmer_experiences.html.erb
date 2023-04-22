@@ -1,21 +1,25 @@
-<% if experiences.any? %>
-  <ul>
-    <% experiences.each do |experience| %>
-      <li>
-        <h3><%= experience.title %></h3>
-        <%= month_calendar events: experience.schedules do |date, schedules| %>
-          <%= date %>
-          <% schedules.each do |schedule| %>
-            <div>
-              <%= schedule.title %>
-              <%= schedule.start_time.strftime("%H:%M") %> - <%= schedule.end_time.strftime("%H:%M") %>
-            </div>
-          <% end %>
-        <% end %>
-        <p><%= experience.content %></p>
-      </li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>まだ体験情報はありません。</p>
+<% @experiences.each do |experience| %>
+  <div class="card mb-4">
+    <div class="card-body">
+      <% experience.plots.each do |plot| %>
+        <span class="badge bg-info fs-5 mb-3"><%= plot.name %></span>
+      <% end %> 
+      
+      <h5 class="card-title">
+        <%= link_to experience.title, experience_path(experience), class: "text-decoration-none" %>
+      </h5>
+      <p class="card-text rows5"><%= simple_format(truncate(experience.content, length: 300))  %></p>
+      
+      <% experience.images.each do |image| %>
+        <%= image_tag(image, alt: "体験情報画像", class: "img-fluid mb-2", style: "max-width: 24%;") %>
+      <% end %>
+      <div class="d-flex">
+        <%= link_to "詳細", experience_path(experience, anchor: "detail_section"), class: "btn btn-outline-secondary me-2" %>
+      </div>
+    </div>
+  </div>
 <% end %>
+
+  <div class="text-center">
+  <%= link_to "戻る", farmers_path %>
+</div>

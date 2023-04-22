@@ -9,11 +9,37 @@
     </div>
   <% end %>
 
-  <%= f.label :prefecture_id, "検索エリア"  %>
-  <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, prompt: "都道府県を選択してください" %>
-  <%= f.label :address, "住所" %>
-  <%= f.text_field :address %>
-  <%= f.label :image, "プロフィール写真" %>
-  <%= f.file_field :image %>
-  <%= f.submit %>
+  <div class="mb-3">
+    <%= f.label :name, class: "form-label "%>
+    <span class="badge bg-danger">必須</span>
+    <%= f.text_field :name, class: "form-control#{" is-invalid" if general.errors.include?(:name)}", placeholder: "ユーザーネームを入力してください" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :prefecture_id, class: "form-label" %>
+    <span class="badge bg-danger">必須</span>
+     <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, { prompt: "都道府県を選択してください" }, class: "form-select#{" is-invalid" if general.errors.include?(:prefecture_id)}" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :address, class: "form-label" %>
+    <span class="badge bg-danger">必須</span>
+    <%= f.text_field :address, class: "form-control#{" is-invalid" if general.errors.include?(:address)}", placeholder: "住所を入力してください" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :favorite_crop, class: "form-label" %>
+    <span class="badge bg-secondary">任意</span>
+    <%= f.text_field :favorite_crop, class: "form-control", placeholder: "好きな農作物を入力してください" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :image, class: "form-label" %>
+    <span class="badge bg-secondary">任意</span>
+    <%= f.file_field :image, class: "form-control" %>
+  </div>
+
+   <div class="mb-4">
+    <%= f.submit class: "btn btn-primary w-100" %>
+  </div>
 <% end %>

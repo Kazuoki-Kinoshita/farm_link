@@ -1,0 +1,43 @@
+<div class="container">
+  <h2 class="text-center mb-4">お気に入り一覧</h2>
+
+  <h4 class="my-4">フォローしている人</h4>  
+  <% @following.each do |user| %>
+    <% if user.id != current_user.id %>
+      <div class="mb-4 d-flex align-items-center border-bottom">
+        <div class="col-7">
+          <% if user.role == "farmer" %>
+            <%= link_to user.farmer.name, overview_farmer_path(user.farmer), class: "text-decoration-none" %>
+          <% elsif user.role == "general" %>
+            <%= link_to user.general.name, general_path(user.general), class: "text-decoration-none" %>
+          <% end %>
+        </div>
+        <div class="col-5 d-flex align-items-center">
+          <%= render 'users/follow_form', user: user %>
+          <%= link_to "メッセージ", conversations_path(sender_id: current_user.id, recipient_id: user.id), method: :post, class: "btn btn-outline-secondary ms-3" %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
+  <h4 class="my-4 mt-5">フォローされている人</h4>
+  <% @followers.each do |user| %>
+    <div class="mb-4 d-flex align-items-center border-bottom">
+      <div class="col-7">
+        <% if user.role == "farmer" %>
+          <%= link_to user.farmer.name, overview_farmer_path(user.farmer), class: "text-decoration-none" %>
+        <% elsif user.role == "general" %>
+          <%= link_to user.general.name, general_path(user.general), class: "text-decoration-none" %>
+        <% end %>
+      </div>
+      <div class="col-5 d-flex align-items-center">
+        <%= render 'users/follow_form', user: user %>
+        <%= link_to "メッセージ", conversations_path(sender_id: current_user.id, recipient_id: user.id), method: :post, class: "btn btn-outline-secondary ms-3" %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="text-center">
+    <%= link_to "戻る", farmers_path %>
+  </div>
+</div>

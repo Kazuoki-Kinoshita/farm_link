@@ -1,3 +1,57 @@
-// Place all the styles related to the Farmers controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+.farmer-container {
+  max-width: 1300px;
+}
+
+.farmer-wide-container {
+  max-width: 1600px;
+}
+
+// farmer index.html.erb
+// .main-image img {
+//   width: 100%;
+//   height: auto;
+//   margin-bottom: 30px;
+//   display: block;
+//   margin: 0 auto;
+// }
+
+.card {
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.farmer-image {
+  height: 300px;
+  object-fit: cover;
+}
+
+.farmer-badge {
+  top: 10px;
+  left: 10px;
+  background-color: green;
+  font-size: 1.1em;
+  padding: 5px 10px; 
+}
+
+// google map
+#show-map-container {
+  max-width: 900px;
+}
+
+#show-map {
+  height: 400px;
+}
+
+#map {
+  height: 600px;
+  width: 100%;
+  display: none;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+// search
+.custom-search-field {
+  width: 300px;
+}

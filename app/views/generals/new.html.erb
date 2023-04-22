@@ -1,3 +1,9 @@
-<h1>新規プロフィール登録</h1>
+<div class="container">
+  <h2 class="text-center mb-4">プロフィール登録</h2>
 
-<%= render 'form', general: @general %>
+  <%= render "form", general: @general %>
+
+  <div class="mb-4">
+    <%= link_to "あとで登録する", farmers_path, class: "btn btn-secondary w-100" %>
+  </div>
+</div>

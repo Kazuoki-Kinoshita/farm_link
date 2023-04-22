@@ -1,15 +1,22 @@
 Rails.application.routes.draw do
+  get 'tops/index'
+  
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
 
-  root 'farmers#index'
+  root 'tops#index'
+  resources :tops, only: [:index]
   resources :users, only: [:show, :index]
   resources :relationships, only: [:create, :destroy]
+  resources :users, only: [:show] do
+    get "follows", on: :member
+  end
+
   resources :generals, only: [:new, :create, :show, :edit, :update]
   resources :farmers, only: [:index, :new, :create, :show, :edit, :update] do
-    get 'overview', on: :member
+    get "overview", on: :member
   end
   resources :posts
   resources :experiences do

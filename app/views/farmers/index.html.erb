@@ -1,94 +1,114 @@
-<%= render 'search', q: @q, url: root_path %>
-
-<style>
-  #map {
-    height: 800px;
-    width: 1200px;
-    display: none;
-  }
-</style>
-
-<button id="toggleMap">地図を表示</button>
-<div id="map" data-farmers="<%= @farmers.to_json(only: [:id, :name, :latitude, :longitude, :address]) %>"></div>
-
-<script type="text/javascript">
-  let map;
-  let markers = [];
-
-  function fitBounds(map, markers) {
-    if (markers.length === 0) return;
-
-    const bounds = new google.maps.LatLngBounds();
-    markers.forEach((marker) => {
-      bounds.extend(marker.getPosition());
-    });
-
-    map.fitBounds(bounds);
-  }
-
-  function initMap() {
-    const mapElement = document.getElementById('map');
-    const farmersData = JSON.parse(mapElement.dataset.farmers);
-    const defaultCenter = { lat: 38.5, lng: 139 };
-
-    const mapInstance = new google.maps.Map(mapElement, {
-      zoom: 6,
-      center: defaultCenter,
-    });
-
-    map = mapInstance;
-
-    farmersData.forEach((farmer) => {
-      const farmerPosition = { lat: farmer.latitude, lng: farmer.longitude };
-
-      const contentString = `<a href="/farmers/${farmer.id}/overview">${farmer.name}</a><br>住所：${farmer.address}`;
-
-      const infowindow = new google.maps.InfoWindow({
-        content: contentString,
-      });
-
-      const marker = new google.maps.Marker({
-        position: farmerPosition,
-        map: map,
-        title: contentString,
-      });
-
-      markers.push(marker);
-
-      marker.addListener('click', function () {
-        infowindow.open(map, marker);
-      });
-    });
-  }
-
-  document.getElementById('toggleMap').addEventListener('click', function () {
-    const mapElement = document.getElementById('map');
-    if (mapElement.style.display === 'none') {
-      mapElement.style.display = 'block';
-      this.textContent = '地図を非表示';
-      fitBounds(map, markers);
-    } else {
-      mapElement.style.display = 'none';
-      this.textContent = '地図を表示';
-    }
-  });
-</script>
-
-<script async defer src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
-</script>
-
-<% @farmers.each do |farmer| %>
-  <div>
-    <% if farmer.image.attached? %>
-      <%= image_tag farmer.image, alt: "Farmer Image" %>
-    <% else %>
-      <p>No image uploaded.</p>
-    <% end %>
-
-    <h3><%= farmer.name %></h3>
-    <p><%= farmer.prefecture.name %></p>
-    <p><%= farmer.product %></p>
-    <%= link_to '詳細', overview_farmer_path(farmer), data: {turbolinks: "false"} %>
-  </div>
+<div class="container farmer-wide-container">
+  <% content_for :main_image do %>
+    <div class="main-image">
+      <%= image_tag "main_image.jpg", alt: "メイン画像", class: "img-fluid" %>
+    </div>
   <% end %>
+
+  <div class="d-flex justify-content-center align-items-center mb-3">
+    <%= render 'search', q: @q, url: farmers_path, class: "me-3" %>
+    <button id="toggleMap" class="btn btn-secondary">地図を表示</button>
+  </div>
+
+  <div id="map" data-farmers="<%= @farmers.to_json(only: [:id, :name, :latitude, :longitude, :address]) %>"></div>
+  <script type="text/javascript">
+    let map;
+    let markers = [];
+
+    function fitBounds(map, markers) {
+      if (markers.length === 0) return;
+
+      if (markers.length === 1) {
+        map.setCenter(markers[0].getPosition());
+        map.setZoom(12);
+      } else {
+        const bounds = new google.maps.LatLngBounds();
+        markers.forEach((marker) => {
+          bounds.extend(marker.getPosition());
+        });
+
+        map.fitBounds(bounds);
+      }
+    }
+
+    function initMap() {
+      const mapElement = document.getElementById('map');
+      const farmersData = JSON.parse(mapElement.dataset.farmers);
+      const defaultCenter = { lat: 38.5, lng: 139 };
+
+      const mapInstance = new google.maps.Map(mapElement, {
+        zoom: 6,
+        center: defaultCenter,
+      });
+
+      map = mapInstance;
+
+      farmersData.forEach((farmer) => {
+        const farmerPosition = { lat: farmer.latitude, lng: farmer.longitude };
+
+        const contentString = `<a href="/farmers/${farmer.id}/overview">${farmer.name}</a><br>住所：${farmer.address}`;
+
+        const infowindow = new google.maps.InfoWindow({
+          content: contentString,
+        });
+
+        const marker = new google.maps.Marker({
+          position: farmerPosition,
+          map: map,
+          title: contentString,
+        });
+
+        markers.push(marker);
+
+        marker.addListener('click', function () {
+          infowindow.open(map, marker);
+        });
+      });
+    }
+
+    document.getElementById('toggleMap').addEventListener('click', function () {
+      const mapElement = document.getElementById('map');
+      if (mapElement.style.display === 'none') {
+        mapElement.style.display = 'block';
+        this.textContent = '地図を非表示';
+        fitBounds(map, markers);
+      } else {
+        mapElement.style.display = 'none';
+        this.textContent = '地図を表示';
+      }
+    });
+  </script>
+
+  <script async defer src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
+  </script>
+
+  <% if @farmers.length.zero? %>
+    <div class="alert alert-info my-4">検索結果はありません</div>
+  <% end %>
+
+  <div class="row my-4">
+    <% @farmers.each do |farmer| %>
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <div class="position-relative">
+            <% if farmer.image.attached? %>
+              <%= image_tag farmer.image, alt: "農家プロフィール画像", class: "card-img-top img-fluid farmer-image" %>
+            <% else %>
+              <%= image_tag "no_image.jpg", alt: "No Image", class: "card-img-top img-fluid farmer-image" %>
+            <% end %>
+            <span class="badge badge-secondary position-absolute farmer-badge"><%= farmer.prefecture.name %></span>
+          </div>
+
+          <div class="card-body">
+            <h4 class="card-title">
+              <%= link_to farmer.name, overview_farmer_path(farmer), style: "color: green; text-decoration: none;" %>
+            </h4>
+            <div class="card-text mb-2"><%= "住所：#{farmer.address}" %></div>
+            <div class="card-text mb-2"><%= "農作物：#{farmer.product}" %></div>
+            <%= link_to '詳細', overview_farmer_path(farmer), class: "btn btn-outline-secondary" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>

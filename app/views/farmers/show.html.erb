@@ -1,19 +1,49 @@
-<h1>プロフィール</h1>
-  <p>農家名:<%= @farmer.name %></p>
-  <p>都道府県: <%= @farmer.prefecture.name %></p>
-  <p>住所：<%= @farmer.address %></p>
+<div class="container farmer-container">
+  <h2 class="text-center mb-4">プロフィール</h2>
 
-  <style>
-  #map{
-    height: 300px;
-    width:600px;
-  }
-  </style>
-  <div id="map"></div>(地図を表示)
+  <div class="d-flex justify-content-center mb-4">
+    <div class="col-5">
+      <% if @farmer.image.attached? %>
+        <%= image_tag @farmer.image, alt: "農家プロフィール画像", class: "img-fluid" %>
+      <% else %>
+        <%= image_tag "no_image.jpg", alt: "No Image", class: "img-fluid" %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-2">農園・農家名</div>
+    <div class="col-10 pg-2 border-bottom""><%= @farmer.name %></div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-2">エリア</div>
+    <div class="col-10 pg-2 border-bottom"><%= @farmer.prefecture.name %></div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-2">住所</div>
+    <div class="col-10 pg-2 border-bottom"><%= @farmer.address %></div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-2">最寄り駅</div>
+    <div class="col-10 pg-2 border-bottom"><%= @farmer.station %></div>
+  </div>
+
+  <div class="row mb-4">
+    <div class="col-2"></div>
+    <div class="col-10">
+      <div id="show-map-container">
+        <div id="show-map"></div>
+      </div>
+    </div>
+  </div>
+
   <script type="text/javascript">
     function initMap() {
       var test ={lat: <%= @farmer.latitude %>, lng: <%= @farmer.longitude %>};
-      var map = new google.maps.Map(document.getElementById('map'), {
+      var map = new google.maps.Map(document.getElementById('show-map'), {
           zoom: 15,
           center: test
       });
@@ -43,19 +73,33 @@
           src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
   </script>
 
-  <p>電話番号: <%= @farmer.phone_number %></p>
-  <% @farmer.plots.each do |plot| %>
-    <p>区画名:<%= plot.name %></p>
-  <% end %>
-  <p>農産物: <%= @farmer.product %></p>
-  <p>Webサイト: <%= @farmer.website %></p>
-  
-  <% if @farmer.image.attached? %>
-    <%= image_tag @farmer.image, alt: "Farmer Image" %>
-  <% else %>
-    <p>No image uploaded.</p>
+  <% @farmer.plots.each_with_index do |plot, index| %>
+    <div class="row mb-3">
+      <div class="col-2">農地カテゴリ<%= index + 1 %></div>
+      <div class="col-10 pg-2 border-bottom"><%= plot.name %></div> 
+    </div>
   <% end %>
 
-  <p>農家詳細: <%= @farmer.profile %></p>
-  <%= link_to '編集', edit_farmer_path(@farmer) %>
-  <%= link_to '戻る', farmers_path %>
+  <div class="row mb-3">
+    <div class="col-2">農作物</div>
+    <div class="col-10 pg-2 border-bottom"><%= @farmer.product %></div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-2">Webサイト</div>
+    <div class="col-10 pg-2 border-bottom"><%= @farmer.website %></div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-2">詳細情報</div>
+    <div class="col-10 pg-2 border-bottom"><%= @farmer.profile %></div>
+  </div>
+
+  <div class="mb-4">
+    <%= link_to "編集", edit_farmer_path(@farmer), class: "btn btn-secondary" %>
+  </div>
+
+  <div class="text-center">
+    <%= link_to "戻る", farmers_path %>
+  </div>
+</div>

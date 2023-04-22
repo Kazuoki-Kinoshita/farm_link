@@ -1,6 +1,7 @@
 class ConversationsController < ApplicationController
   before_action :authenticate_user!
-  
+  before_action :ensure_profile_exists
+
   def index
     @conversations = Conversation.all
   end
