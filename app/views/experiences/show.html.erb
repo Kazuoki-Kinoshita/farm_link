@@ -1,49 +1,10 @@
 <div class="container experience-container">
-  <h2 class="text-center mb-4">カレンダー登録</h2>
+  <h2 class="text-center mb-4"><%= @experience.title %></h2>
 
-  <%= month_calendar events: @experience.schedules do |date, schedules| %>
-    <%= date.strftime("%-d") %>
-    <% schedules.each do |schedule| %>
-      <div>
-        <p><%= schedule.title %></p>
-        <%= schedule.start_time.strftime("%H:%M") %> - <%= schedule.end_time.strftime("%H:%M") %>
-        <%= link_to "編集", edit_experience_schedule_path(@experience, schedule), class: "btn btn-outline-primary btn-sm" %>
-        <%= link_to "削除", experience_schedule_path(@experience, schedule), method: :delete, class: "btn btn-outline-danger btn-sm" %>
-      </div>
-    <% end %>
-  <% end %>
-
-  <%= form_with(model: [@experience, @experience.schedules.build], local: true) do |f| %>
-    <div class="mb-3">
-      <%= f.label :title, "タイトル" %>
-      <%= f.text_field :title %>
-    </div>
-
-    <div class="mb-3">
-      <%= f.label :start_time, "開始時刻" %>
-      <%= f.datetime_select :start_time %>
-    </div>
-    
-    <div class="mb-3">
-      <%= f.label :end_time, "終了時刻" %>
-      <%= f.datetime_select :end_time %>
-    </div>
-
-    <div class="mb-3">
-      <%= f.submit "スケジュールを追加", class: "btn btn-primary" %>
-    </div>
-  <% end %>
-
-  <hr id="detail_section">
-  <div class="container-fluid mt-4">
-    <% if flash[:edit_notice] %>
-      <div class="alert alert-info" role="alert">
-        <%= flash[:edit_notice] %>
-      </div>
-    <% end %>
+  <div class="d-flex justify-content-end">
+    <%= render 'users/follow_form', user: @experience.farmer.user %>
+    <%= render 'users/conversation_form', user: @experience.farmer.user %>
   </div>
-
-  <h2 class="text-center mb-4">体験情報詳細</h2>
 
   <% @plots.each do |plot| %>
     <span class="badge bg-info fs-5 mb-3"><%= plot.name %></span>
@@ -63,7 +24,51 @@
     <% end %>
   <% end %>
 
+  <hr id="detail_section">
+  <h2 class="text-center mb-4">農業体験カレンダー</h2>
+  
+  <%= month_calendar events: @experience.schedules do |date, schedules| %>
+    <%= date.strftime("%-d") %>
+    <% schedules.each do |schedule| %>
+      <div>
+        <p><%= schedule.title %></p>
+        <%= schedule.start_time.strftime("%H:%M") %> - <%= schedule.end_time.strftime("%H:%M") %>
+        <% if current_user == @experience.farmer.user %>
+          <%= link_to "編集", edit_experience_schedule_path(@experience, schedule), class: "btn btn-outline-primary btn-sm" %>
+          <%= link_to "削除", experience_schedule_path(@experience, schedule), method: :delete, class: "btn btn-outline-danger btn-sm" %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <% if current_user == @experience.farmer.user %>
+    <%= form_with(model: [@experience, @experience.schedules.build], local: true) do |f| %>
+      <div class="mb-3">
+        <%= f.label :title, "タイトル" %>
+        <%= f.text_field :title %>
+      </div>
+
+      <div class="mb-3">
+        <%= f.label :start_time, "開始時刻" %>
+        <%= f.datetime_select :start_time %>
+      </div>
+      
+      <div class="mb-3">
+        <%= f.label :end_time, "終了時刻" %>
+        <%= f.datetime_select :end_time %>
+      </div>
+
+      <div class="mb-3">
+        <%= f.submit "スケジュールを追加", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  <% end %>
+
   <div class="text-center">
-    <%= link_to "体験情報一覧へ", experiences_path %>
+    <% if current_user == @experience.farmer.user %>
+      <%= link_to "体験情報一覧へ", experiences_path %>
+    <% else %>
+      <%= link_to "戻る", overview_farmer_path(@experience.farmer) %>
+    <% end %> 
   </div>
 </div>

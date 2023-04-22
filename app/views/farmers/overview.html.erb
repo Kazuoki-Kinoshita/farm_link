@@ -10,8 +10,10 @@
 
 <div class="container farmer-wide-container">
   <h2 class="text-center mb-4"><%= @farmer.name %></h2>
-  <%= render 'users/follow_form', user: @user %>
-  <%= render 'users/conversation_form', user: @user %>
+   <div class="d-flex justify-content-end">
+    <%= render 'users/follow_form', user: @user %>
+    <%= render 'users/conversation_form', user: @user %>
+  </div>
 
   <ul class="nav nav-tabs">
     <li class="nav-item">

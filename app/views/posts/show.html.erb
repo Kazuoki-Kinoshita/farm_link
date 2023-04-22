@@ -1,5 +1,10 @@
 <div class="container">
-  <h2 class="text-center mb-4">投稿詳細</h2>
+  <h2 class="text-center mb-4">投稿</h2>
+
+  <div class="d-flex justify-content-end">
+    <%= render 'users/follow_form', user: @post.farmer.user %>
+    <%= render 'users/conversation_form', user: @post.farmer.user %>
+  </div>
 
   <div class="mb-3 border-bottom">
     <div class="col">
@@ -20,6 +25,10 @@
   <% end %>
   
   <div class="text-center">
-    <%= link_to "投稿一覧へ", posts_path %>
+    <% if current_user == @post.farmer.user %>
+      <%= link_to "投稿一覧へ", posts_path %>
+    <% else %>
+      <%= link_to "戻る", overview_farmer_path(@post.farmer) %>
+    <% end %> 
   </div>
 </div>

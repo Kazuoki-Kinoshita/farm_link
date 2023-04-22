@@ -6,9 +6,13 @@
     このアプリでは、農家の作業負担を軽減すると同時に、地元住民が労働力不足に悩む農家と手軽につながり、農業体験を通じて農業に親しむ機会を提供することで、
     農業に興味を持つ人を増やし、地域コミュニティを活性化することを目的としています。
   </p>
-  <div class="text-center mt-5">
-    <%= link_to "今すぐ始める", new_user_registration_path, class: "btn btn-primary btn-lg" %>
-  </div></br>
+  <div class="text-center mt-5"> 
+    <% if user_signed_in? %>
+      <%= link_to "農家を探す", farmers_path, class: "btn btn-secondary btn-lg" %>
+    <% else %>
+      <%= link_to "今すぐ始める", new_user_registration_path, class: "btn btn-primary btn-lg" %>
+    <% end %>
+  </div>
   
   <h2 class="text-center mt-5 mb-4 style="font-weight: bold">機能一覧</h2>
   <ol>

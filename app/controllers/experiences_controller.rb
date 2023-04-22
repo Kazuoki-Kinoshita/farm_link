@@ -32,7 +32,7 @@ class ExperiencesController < ApplicationController
 
   def update
     if @experience.update(experience_params)
-      redirect_to experience_path(@experience, anchor: "detail_section"), flash: { edit_notice: "体験情報が更新されました。" }
+      redirect_to experience_path(@experience), notice: "体験情報が更新されました。"
     else
       render :edit
     end

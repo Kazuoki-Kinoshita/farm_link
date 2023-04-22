@@ -21,8 +21,8 @@
         <% end %>
         <div class="d-flex">
 
-          <%= link_to "カレンダー登録", experience_path(experience), class: "btn btn-outline-primary me-2" %>
-          <%= link_to "詳細", experience_path(experience, anchor: "detail_section"), class: "btn btn-outline-secondary me-2" %>
+          <%= link_to "カレンダー登録", experience_path(experience, anchor: "detail_section"), class: "btn btn-outline-primary me-2" %>
+          <%= link_to "詳細", experience_path(experience), class: "btn btn-outline-secondary me-2" %>
           <%= link_to "編集", edit_experience_path(experience), class: "btn btn-secondary me-2" %>
           <%= link_to "削除", experience_path(experience), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %>
         </div>
