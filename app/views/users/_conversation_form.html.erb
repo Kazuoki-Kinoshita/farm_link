@@ -1,5 +1,5 @@
 <div id="conversation_form_<%= user.id %>">
   <% if current_user && current_user.id != user.id %>
-    <%= link_to 'メッセージを送る', conversations_path(sender_id: current_user.id, recipient_id: user.id), method: :post, class: "btn btn-secondary" %>
+    <%= link_to 'メッセージを送る', conversations_path(sender_id: current_user.id, recipient_id: user.id), method: :post, class: "btn btn-outline-secondary" %>
   <% end %>
 </div>
