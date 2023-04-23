@@ -23,13 +23,12 @@ class Ability
       elsif user.general? && user.general.nil?
         can :create, General, user_id: user.id
       end
-
     end
     can :manage, User, id: user.id
-    can :read, Farmer
+    can :index, Farmer
     can :overview, Farmer
+    can :show, General
     can :read, Experience
-    can :read, General
     can :read, Post   
   end
 end
