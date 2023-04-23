@@ -5,6 +5,13 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
+  devise_scope :user do
+    post 'users/guest_admin_sign_in', to: 'users/sessions#guest_admin_sign_in'
+    post 'users/guest_farmer_nil_sign_in', to: 'users/sessions#guest_farmer_nil_sign_in'
+    post 'users/guest_farmer_present_sign_in', to: 'users/sessions#guest_farmer_present_sign_in'
+    post 'users/guest_general_nil_sign_in', to: 'users/sessions#guest_general_nil_sign_in'
+    post 'users/guest_general_present_sign_in', to: 'users/sessions#guest_general_present_sign_in'
+  end
 
   root 'tops#index'
   resources :tops, only: [:index]

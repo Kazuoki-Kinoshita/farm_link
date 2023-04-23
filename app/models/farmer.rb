@@ -1,4 +1,5 @@
 class Farmer < ApplicationRecord
+  attr_accessor :skip_plot_validation
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :prefecture
   belongs_to :user
@@ -31,6 +32,7 @@ class Farmer < ApplicationRecord
   end
 
   def validate_plot_presence
+    return if skip_plot_validation
     valid_plots = plots.reject(&:marked_for_destruction?) # 削除される予定のプロットを除外し、残りのプロットを代入
     if valid_plots.empty? || valid_plots.all? { |plot| plot.name.blank? }
       errors.add(:base, "農地カテゴリを入力してください")
