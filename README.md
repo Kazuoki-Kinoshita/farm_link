@@ -2,7 +2,7 @@
 
 ## 開発言語
 - Ruby 3.0.1
-- Rails 6.1.6
+- Rails 6.1.7
 
 ## 就業Termの技術
 - devise
@@ -39,6 +39,7 @@ https://docs.google.com/spreadsheets/d/148I2Z3vRf-EKBWjTOgoPCv3j0jTmryozKNh3qZ6j
 https://cacoo.com/diagrams/BuuQyis91N3eU0lV/47463
 
 ## ER図
-![er](https://user-images.githubusercontent.com/122067636/229800989-e5dcd3d8-2d10-4400-9107-9865627162b8.png)
+![er](https://user-images.githubusercontent.com/122067636/233841241-6eb76c5d-d856-4ca9-bbb6-cd13c0b2de4a.png)
+
 ## 画面遷移図
 ![diagram](https://user-images.githubusercontent.com/122067636/229765786-6b9856cc-8f8d-4c18-81a0-3d967850c5fe.png)
