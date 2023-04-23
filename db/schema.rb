@@ -1,4 +1,4 @@
-ActiveRecord::Schema.define(version: 2023_04_18_084126) do
+ActiveRecord::Schema.define(version: 2023_04_23_123510) do
 
   enable_extension "plpgsql"
 
@@ -124,9 +124,9 @@ ActiveRecord::Schema.define(version: 2023_04_18_084126) do
 
   create_table "schedules", force: :cascade do |t|
     t.bigint "experience_id", null: false
-    t.string "title", null: false
-    t.datetime "start_time"
-    t.datetime "end_time"
+    t.string "title"
+    t.datetime "start_time", null: false
+    t.datetime "end_time", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["experience_id"], name: "index_schedules_on_experience_id"
