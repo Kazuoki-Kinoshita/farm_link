@@ -40,6 +40,7 @@ gem 'pry-rails'
 gem 'net-smtp'
 gem 'net-imap'
 gem 'net-pop'
+gem 'mini_magick'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
