@@ -8,8 +8,6 @@
 - devise
 - rails_admin
 - cancancan
-- carrierwave
-- kaminari
 - フォロー機能
 - メッセージ機能
 
@@ -17,7 +15,9 @@
 - Google map API
 - geocoder
 - ransack
+- cocoon
 - simple_calendar
+- Active Storage
 
 ## 実行手順
 ```

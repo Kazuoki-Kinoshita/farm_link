@@ -23,12 +23,12 @@
   </div>
   <div class="mb-3">
     <li>農家プロフィール登録機能
-      <p>ユーザー登録後すぐ、または後からプロフィール登録をすることができます。登録することで、体験情報の登録や日々の投稿が可能になります。また、一般ユーザーや他の農家とメッセージやフォローができるようになります。</p>
+      <p>ユーザー登録後すぐ、または後からプロフィール登録をすることができます。登録することで体験情報の登録や日々の投稿が可能になります。また、一般ユーザーや他の農家とメッセージやフォローができるようになります。</p>
     </li>
   </div>
   <div class="mb-3">
     <li>一般ユーザープロフィール登録機能
-      <p>ユーザー登録後すぐ、または後からプロフィール登録をすることができます。登録することで、 農家とのメッセージやフォローができるようになります。</p>
+      <p>ユーザー登録後すぐ、または後からプロフィール登録をすることができます。登録することで農家とメッセージやフォローができるようになります。</p>
     </li>
   </div>
   <div class="mb-3">
@@ -64,9 +64,15 @@
   </ol>
 
    <div class="text-center mt-5">
-    <%= link_to "ゲストログイン（farmer）", "#", class: "btn btn-secondary" %>
-    <%= link_to "ゲストログイン（genral）", "#", class: "btn btn-secondary me-2" %>
-    <%= link_to "ゲストログイン（admin）", "#", class: "btn btn-secondary me-2" %>
+    <%= link_to "ゲスト（ログインなし）", root_path, class: "btn btn-secondary me-2" %>
+    <%= link_to "ゲストログイン（管理者)", users_guest_admin_sign_in_path, method: :post, class: "btn btn-secondary me-2" %>
+  </div>
+  <div class="text-center mt-5">
+    <%= link_to "ゲストログイン（農家/プロフィール登録なし）", users_guest_farmer_nil_sign_in_path, method: :post, class: "btn btn-secondary me-2" %>
+    <%= link_to "ゲストログイン（農家/プロフィール登録あり）", users_guest_farmer_present_sign_in_path, method: :post, class: "btn btn-secondary me-2" %>
+  </div>
+  <div class="text-center mt-5">
+    <%= link_to "ゲストログイン（一般の方/プロフィール登録なし）", users_guest_general_nil_sign_in_path, method: :post, class: "btn btn-secondary me-2" %>
+    <%= link_to "ゲストログイン（一般の方/プロフィール登録あり）", users_guest_general_present_sign_in_path, method: :post, class: "btn btn-secondary me-2" %>
   </div>
 </div>
-  
