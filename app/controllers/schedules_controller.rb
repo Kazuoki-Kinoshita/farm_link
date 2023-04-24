@@ -11,6 +11,7 @@ class SchedulesController < ApplicationController
     if @schedule.save
       redirect_to @experience, notice: "スケジュールが追加されました。"
     else
+      @plots = @experience.plots
       render 'experiences/show'
     end
   end

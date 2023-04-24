@@ -28,6 +28,7 @@ class MessagesController < ApplicationController
     if @message.save
       redirect_to conversation_messages_path(@conversation)
     else
+      flash[:alert] = 'メッセージを入力してください。'
       redirect_to action: 'index', conversation_id: @conversation.id
     end
   end
