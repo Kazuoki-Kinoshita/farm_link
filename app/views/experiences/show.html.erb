@@ -26,8 +26,8 @@
 
   <hr id="detail_section">
   <h2 class="text-center mb-4">農業体験カレンダー</h2>
-  
-  <%= month_calendar events: @experience.schedules do |date, schedules| %>
+
+  <%= month_calendar events: @experience.schedules.saved do |date, schedules| %>
     <%= date.strftime("%-d") %>
     <% schedules.each do |schedule| %>
       <div>
@@ -43,9 +43,20 @@
 
   <% if current_user == @experience.farmer.user %>
     <%= form_with(model: [@experience, @experience.schedules.build], local: true) do |f| %>
+      <% if @schedule.present? && @schedule.errors.any? %>
+        <div class="alert alert-danger" role="alert">
+          <ul>
+          <% @schedule.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
       <div class="mb-3">
-        <%= f.label :title, "タイトル" %>
-        <%= f.text_field :title %>
+        <%= f.label :title, "タイトル"%>
+        <span class="badge bg-danger">必須</span>
+        <%= f.text_field :title, placeholder: "農業体験の内容を記入してください（15字以内）", class: "form-control w-25" %>
       </div>
 
       <div class="mb-3">

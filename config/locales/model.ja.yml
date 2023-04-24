@@ -36,6 +36,9 @@ ja:
         plot_ids: 農地カテゴリ
       user:
         role: ""
-    messages:
+      schedule:
+        title: タイトル
+        start_time: 開始時間
   errors:
       empty: "最低1つの農地カテゴリを入力してください。"
+      start_time_must_be_before_end_time: は終了時間より前でなければなりません
