@@ -45,7 +45,7 @@
 
   <%= form_with(model: [@conversation, @message]) do |f| %>
     <div class="my-3">
-      <%= f.text_area :body, class: "form-control", rows: 5 %>
+      <%= f.text_area :body, class: "form-control", placeholder: "メッセージを記入してください", rows: 5 %>
     </div>
       <%= f.text_field :user_id, value: current_user.id, type: "hidden"  %>
     <div class="mb-4">
