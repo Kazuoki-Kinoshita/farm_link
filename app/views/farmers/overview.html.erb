@@ -17,18 +17,18 @@
 
   <ul class="nav nav-tabs">
     <li class="nav-item">
-      <a class="nav-link active" data-toggle="tab" href="#basic-info">基本情報</a>
+      <a class="nav-link active" data-bs-toggle="tab" href="#basic-info">基本情報</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-toggle="tab" href="#experience-info">体験情報</a>
+      <a class="nav-link" data-bs-toggle="tab" href="#experience-info">体験情報</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-toggle="tab" href="#posts-list">投稿一覧</a>
+      <a class="nav-link" data-bs-toggle="tab" href="#posts-list">投稿一覧</a>
     </li>
   </ul>
 
   <div class="tab-content mt-4">
-    <div class="tab-pane fade show active" id="basic-info">
+    <div class="tab-pane fade active" id="basic-info">
       <%= render 'farmers/farmer_profile', farmer: @farmer %>
     </div>
     <div class="tab-pane fade" id="experience-info">
