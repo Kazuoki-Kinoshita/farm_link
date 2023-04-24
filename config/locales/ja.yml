@@ -6,6 +6,15 @@ ja:
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+    models:
+      active_storage/blob: "ブロブ"
+      active_storage/attachment: "添付ファイル"
+      active_storage/variant_record: "バリアント"
+      conversation: "会話"
+      experience_plot: "体験とカテゴリの関連"
+      message: "メッセージ"
+      relationship: "フォロー"
+      schedule: "スケジュール"
   date:
     abbr_day_names:
     - 日
