@@ -40,8 +40,8 @@ class FarmersController < ApplicationController
 
   def overview
     @user = @farmer.user
-    @posts = @farmer.posts
-    @experiences = @farmer.experiences.includes(:schedules) 
+    @posts = @farmer.posts.created_at_sorted
+    @experiences = @farmer.experiences.includes(:schedules).created_at_sorted 
   end
   
   private

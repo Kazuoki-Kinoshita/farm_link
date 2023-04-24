@@ -13,7 +13,7 @@
     <header>
       <nav class="navbar navbar-expand-lg navbar-dark">  
         <%= link_to "Farm Link", root_path, class: "navbar-brand" %>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -25,7 +25,7 @@
               <% if current_user.role == "general" %>
                 <% if current_user.general&.persisted? %>
                   <li class="nav-item dropdown">
-                    <%= link_to "マイページ", "#", class: "nav-link dropdown-toggle", id: "navbarDropdown", role: "button", data: { toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" } %>
+                    <%= link_to "マイページ", "#", class: "nav-link dropdown-toggle", id: "navbarDropdown", role: "button", data: { bs_toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" } %>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                       <%= link_to "アカウント情報", user_path(current_user), class: "dropdown-item" %>
                       <%= link_to "プロフィール", general_path(current_user.general), class: "dropdown-item" %>
@@ -50,7 +50,7 @@
                     <%= link_to "投稿ページ", posts_path, class: "nav-link" %>
                   </li>                                                          
                   <li class="nav-item dropdown">
-                    <%= link_to "マイページ", "#", class: "nav-link dropdown-toggle", id: "navbarDropdown", role: "button", data: { toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" } %>
+                    <%= link_to "マイページ", "#", class: "nav-link dropdown-toggle", id: "navbarDropdown", role: "button", data: { bs_toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" } %>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                       <%= link_to "アカウント情報", user_path(current_user), class: "dropdown-item" %>
                       <%= link_to "プロフィール", farmer_path(current_user.farmer), class: "dropdown-item" %>
