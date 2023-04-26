@@ -251,6 +251,7 @@ GEM
       actionpack (>= 5.2)
       railties (>= 5.2)
     rexml (3.2.5)
+    rinku (2.0.6)
     rspec-core (3.12.1)
       rspec-support (~> 3.12.0)
     rspec-expectations (3.12.2)
@@ -368,6 +369,7 @@ DEPENDENCIES
   rails_admin (~> 3.0)
   ransack
   rexml
+  rinku
   rspec-rails
   sass-rails (>= 6)
   selenium-webdriver (>= 4.0.0.rc1)
