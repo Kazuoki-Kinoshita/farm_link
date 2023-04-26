@@ -41,6 +41,7 @@ gem 'net-smtp'
 gem 'net-imap'
 gem 'net-pop'
 gem 'mini_magick'
+gem 'rinku'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
