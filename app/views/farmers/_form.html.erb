@@ -61,7 +61,9 @@
   <div class="mb-3">
     <%= f.label :profile, class: "form-label" %>
     <span class="badge bg-secondary">任意</span>
-    <%= f.text_area :profile, class: "form-control#{" is-invalid" if farmer.errors.include?(:profile)}", placeholder: "詳細情報を入力してください", rows: 8  %>
+    <button type="button" id="template-button" class="btn btn btn-info btn-sm">記入例</button>
+    <div id="profile-output" contenteditable="true" class="form-control <%= "is-invalid" if farmer.errors.include?(:profile) %>" style="min-height: 135px;"></div>
+    <%= f.hidden_field :profile, id: "hidden-profile" %>
   </div>
 
   <div class="mb-4">

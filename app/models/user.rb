@@ -58,6 +58,7 @@ class User < ApplicationRecord
         address: '東京都中央区ゲスト市123-4',
         station: 'ゲスト駅',
         product: 'ゲスト作物',
+        website: "https://farmer0.example.com",
         skip_plot_validation: true
       )
 
