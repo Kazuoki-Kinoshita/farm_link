@@ -30,8 +30,14 @@
 
   <div class="mb-3">
     <%= f.label :content, class: "form-label"%>
-    <span class="badge bg-danger">必須</span>
-    <%= f.text_area :content, class: "form-control#{" is-invalid" if experience.errors.include?(:content)}", placeholder: "体験情報を入力してください", rows: 15 %>
+      <span class="badge bg-danger">必須</span>
+      <button type="button" id="experience-template-button" class="btn btn-info btn-sm">記入例</button>
+      <div id="content-output" contenteditable="true" class="form-control <%= "is-invalid" if experience.errors.include?(:content) %>" style="min-height: 135px;"
+        data-farmer-name="<%= current_user.farmer.name %>"
+        data-farmer-address="<%= current_user.farmer.address %>"
+        data-farmer-product="<%= current_user.farmer.product %>">
+      </div>
+    <%= f.hidden_field :content, id: "hidden-content" %>
   </div>
 
   <div class="mb-3">

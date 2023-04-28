@@ -7,13 +7,7 @@ function applyYellowMarker(text) {
 }
 
 export function profileTemplate(name, address, product) {
-  return `<span style="color: blue">地域住民の皆様、こんにちは！<br/>
-${applyYellowMarker(address)}にある${applyYellowMarker(name)}では、地域の皆様向けに楽しい農業体験を提供しております。ぜひご参加ください！<br/>
-${applyYellowMarker(name)}での農業体験は、地域の方々同士の交流や、新たな友達づくりにもぴったりです。<br/>
-${applyYellowMarker(product)}などの収穫体験や畑作業体験を通して、地域の皆様と一緒に手を取り合って農業に取り組んで行きたいと思っています。<br/>
-また、農業体験を通じて地域の農業に興味を持っていただけることで、将来的には地域の農業振興にもつながることを期待しております。</br>
-${applyYellowMarker(name)}での農業体験は、地域の皆様にとって新鮮な体験や癒しの場となることでしょう。</br>
-美しい自然に囲まれた当農園で、皆さんの笑顔に出会えることを楽しみにしております。お気軽にお越しください！</br>
-ご質問や体験の予約など、お気軽にメッセージをお送りください！</span>`
+  return `<span style="color: blue">${applyYellowMarker(address)}に位置する${applyYellowMarker(name)}は、緑豊かな環境で地域住民の皆様に愛される農家を目指しております。</br>
+私たちは、${applyYellowMarker(product)}を主に栽培し、安全で美味しい作物を皆様にお届けしています。当農園では、環境に配慮した持続可能な農業を実践し、健全な土壌と生態系を保つよう努力しております。また、農業に興味がある方や地域の皆様を対象に、農業体験などを開催しています。四季折々の風景を楽しみながら、新鮮で栄養豊富な農作物を収穫する喜びを体験していただけます。ご家族やお友達と一緒に農業の魅力を発見し、心身のリフレッシュや地域とのつながりを深めましょう。ご質問やお問い合わせがございましたら、お気軽にメッセージをお送りください。皆様からのメッセージを心よりお待ちしております！</span>`
 ;
 }
